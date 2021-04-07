@@ -1,5 +1,5 @@
 export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/gvim
+export VISUAL=/usr/bin/vim
 export TERMINAL=/usr/bin/alacritty
 export BROWSER=firefox
 export QT_QPA_PLATFORMTHEME="qt5ct"
