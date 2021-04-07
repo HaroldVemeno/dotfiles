@@ -1,0 +1,24 @@
+#!/bin/sh
+# Warning: this script is awful and might fail
+
+d="[\"']"
+
+#echo "$d"
+
+choice=$(grep -i "^menuentry " /boot/grub/grub.cfg | awk -F"$d" '/.*/{print $2}' | fzf )
+ 
+#echo "$choice"
+#echo "$d$choice$d"
+
+name=$(grep -i "$d$choice$d" /boot/grub/grub.cfg | awk -F"$d" '{print $4}' )
+
+echo "The chosen entry: $choice"
+echo "The grub name: $name"
+
+sudo grub-reboot "$name" && echo "Done" || echo "grub-reboot failed" &&
+    printf "Reboot now? [y/n]"
+    read -r yn &&
+    case $yn in 
+        [Yy]*) sudo reboot;;
+        *) exit;;
+    esac
