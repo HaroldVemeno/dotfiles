@@ -10,19 +10,18 @@ Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons' 
 Plug 'vim-syntastic/syntastic'
-Plug 'ycm-core/youcompleteme' 
 
 call plug#end()
 
-let g:ymc_language_server =
-\ [
-\   {
-\     'name': 'haskell', 
-\     'cmdline': [ 'haskell-language-server-wrapper', '--lsp'], 
-\     'rootPatterns': ['*.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', "hie.yaml"],
-\     'filetypes': [ 'haskell', 'lhaskell' ] 
-\   }
-\ ]
+"let g:ymc_language_server =
+"\ [
+"\   {
+"\     'name': 'haskell', 
+"\     'cmdline': [ 'haskell-language-server-wrapper', '--lsp'], 
+"\     'rootPatterns': ['*.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', "hie.yaml"],
+"\     'filetypes': [ 'haskell', 'lhaskell' ] 
+"\   }
+"\ ]
 
 "" General
 set number	" Show line numbers
@@ -37,6 +36,7 @@ set hlsearch	" Highlight all search results
 set incsearch	" Searches for strings incrementally
 set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
+
 set path+=**
  
 set autoindent	" Auto-indent new lines
@@ -70,16 +70,18 @@ set guioptions-=L  "remove left-hand scroll bar
 syntax enable
 
 map <Space> <Nop>
-let mapleader = "<Space>"
+let mapleader = "\<Space>"
 
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<return>
+
 inoremap jj <ESC>
-nnoremap <ESC> <ESC>:noh<return>
+nnoremap <ESC>^[ <ESC>^[
+nnoremap <ESC>  <ESC>:noh<return>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-command W   write ! sudo tee "%" > /dev/null
-command Wq  execute 'write ! sudo tee % > /dev/null' <bar> q!
+command W write ! sudo tee "%" > /dev/null
+command Wq execute 'write ! sudo tee % > /dev/null' <bar> q!
