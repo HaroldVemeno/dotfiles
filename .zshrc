@@ -1,4 +1,4 @@
-## Options section
+# Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob                                               # Case insensitive globbing
@@ -202,6 +202,8 @@ esac
     # *) bindkey -v
 # esac
 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 bindkey -v
 
@@ -215,10 +217,12 @@ nu ()
 source /home/stepan/.config/broot/launcher/bash/br
 
 alias cls=clear
-alias ls='exa -F --icons'
-alias la='exa -Fa --icons'
-alias ll='exa -Fl --icons'
-alias lla='exa -Fla --icons'
+alias ls='exa -F --icons --group-directories-first'
+alias la='exa -Fa --icons --group-directories-first'
+alias ll='exa -Fl --icons --group-directories-first'
+alias lla='exa -Fla --icons --group-directories-first'
+alias lt='exa -FT --icons --group-directories-first'
+alias lta='exa -FTa --icons --group-directories-first'
 alias nf='neofetch'
 alias count='wc -l'
 alias trm='mv -t ~/.local/share/Trash'
