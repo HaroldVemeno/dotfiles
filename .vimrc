@@ -74,7 +74,7 @@ let mapleader = "<Space>"
 
 map <C-n> :NERDTreeToggle<CR>
 inoremap jj <ESC>
-nnoremap <ESC><ESC> :noh<return>
+nnoremap <ESC> <ESC>:noh<return>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
