@@ -238,6 +238,8 @@ alias cl='clear'
 
 alias yeet='exec'
 
+alias termbin='nc termbin.com 9999'
+
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 
 eval $(thefuck --alias)
