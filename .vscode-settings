@@ -18,8 +18,10 @@
     "workbench.panel.defaultLocation": "right",
     "C_Cpp.suggestSnippets": false,
     "C_Cpp.default.defines": ["DEBUG","_DEBUG","UNICODE","_UNICODE"],
-    "C_Cpp.default.cppStandard": "c++17",
-    "C_Cpp.default.compilerPath": "g++.exe",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.compilerPath": "g++",
+    "C_Cpp.updateChannel": "Insiders",
+    "C_Cpp.clang_format_style": "LLVM",
     "powershell.scriptAnalysis.enable": false,
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": true,
@@ -30,7 +32,6 @@
     "haskell.formattingProvider": "ormolu",
     "haskell.languageServerVariant": "haskell-language-server",
     "haskell.hlintOn": true,
-
     "editor.suggestSelection": "first",
     "vim.disableExtension": false,
     "vim.easymotion" : true,
@@ -45,8 +46,6 @@
     "editor.fontLigatures": "'ss06'",
     "editor.fontSize": 13.5,
     "editor.fontWeight": "normal",
-    "workbench.settings.openDefaultSettings": true,
-    "workbench.settings.useSplitJSON": true,
     "files.hotExit": "onExitAndWindowClose",
     "vim.statusBarColorControl": true,
     "vim.statusBarColors.normal": ["#8FBCBB", "#000000"],
@@ -92,6 +91,7 @@
     },
     "window.menuBarVisibility":"hidden",
     "files.exclude": {
+      "**/.vscode": true,
       "**/.git": true,
       "**/.svn": true,
       "**/.hg": true,
@@ -100,5 +100,8 @@
       "**/*.o": true,
       "**/*.hi": true
     },
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "[cpp]": {
+      "editor.defaultFormatter": "ms-vscode.cpptools"
+    }
 }
