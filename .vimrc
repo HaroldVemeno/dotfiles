@@ -33,7 +33,7 @@ let g:ctrlp_working_path_mode = 'ra'
 
 "" General
 set number	" Show line numbers
-set relativenumber	" Show line numbers
+set relativenumber
 set linebreak	" Break lines at word (requires Wrap lines)
 set showbreak=+++ 	" Wrap-broken line prefix
 set showmatch	" Highlight matching brace
@@ -69,12 +69,13 @@ set title
 set wildmenu
 set wildchar=<TAB>
 
-set guifont="FiraCode Nerd Font"
+set guifont=FiraCode\ Nerd\ Font
 colorscheme desert
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
+set splitbelow splitright
 
 syntax enable
 
@@ -99,8 +100,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-command! W write ! sudo tee "%" > /dev/null
-command! Wq execute 'write ! sudo tee % > /dev/null' <bar> q!
+command! W execute 'write !sudo tee % > /dev/null' <bar> edit!
+command! Wq execute 'write !sudo tee % > /dev/null' <bar> q!
 
 command! Trim %s/\s\+$//g
 

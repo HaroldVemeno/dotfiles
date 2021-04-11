@@ -18,8 +18,8 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 #export EDITOR=/usr/bin/nano
 #export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
@@ -203,6 +203,9 @@ esac
 # esac
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
+
+export NNN_TRASH=1
 
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 bindkey -v
@@ -221,11 +224,12 @@ alias ls='exa -F --icons --group-directories-first'
 alias la='exa -Fa --icons --group-directories-first'
 alias ll='exa -Fl --icons --group-directories-first'
 alias lla='exa -Fla --icons --group-directories-first'
+alias lal='exa -Fla --icons --group-directories-first'
 alias lt='exa -FT --icons --group-directories-first'
 alias lta='exa -FTa --icons --group-directories-first'
 alias nf='neofetch'
 alias count='wc -l'
-alias trm='mv -t ~/.local/share/Trash'
+alias trm='trash-put -iv'
 alias rm='rm -iv --preserve-root'
 alias mv='mv -iv'
 alias cp='cp -iv'
@@ -233,6 +237,7 @@ alias ln='ln -iv'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias diff='diff --color=auto'
 
 alias cl='clear'
 
@@ -245,5 +250,7 @@ projects () {
     cd ~/Projects
     cd $(\ls | fzf)
 }
+
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 eval $(thefuck --alias)
