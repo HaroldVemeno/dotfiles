@@ -238,12 +238,20 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
+alias e="$EDITOR"
 
 alias cl='clear'
 
 alias yeet='exec'
 
 alias termbin='nc termbin.com 9999'
+weather()
+{
+    # change Paris to your default location
+    local request="wttr.in/$@"
+    [ "$(tput cols)" -lt 125 ] && request+='?n'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 projects () {
