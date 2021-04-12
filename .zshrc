@@ -1,5 +1,4 @@
 stty -ixon
-
 # Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -163,7 +162,6 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
-alias e="f -e vim"
 
 alias cls='clear'
 alias cl='clear'
@@ -186,7 +184,9 @@ alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 #}
 
 #[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+eval "$(fasd --init auto)"
+alias e="f -e vim"
+
 source /home/stepan/.config/broot/launcher/bash/br
-eval  $(fasd --init auto)
 eval "$(starship init zsh)"
 eval  $(thefuck --alias)
