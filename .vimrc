@@ -14,6 +14,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
+colorscheme desert
+
 let g:airline_powerline_fonts = 1
 
 let g:airline#extensions#tabline#enabled = 1
@@ -31,6 +33,7 @@ let g:airline#extensions#tabline#buff_label_first = 1
 
 let g:ctrlp_working_path_mode = 'ra'
 
+
 "" General
 set number	" Show line numbers
 set relativenumber
@@ -46,6 +49,8 @@ set hlsearch	" Highlight all search results
 set incsearch	" Searches for strings incrementally
 set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
+"set termguicolors
+"set cursorline cursorcolumn
 
 set path+=**
 
@@ -61,16 +66,17 @@ set ruler	" Show row and column ruler information
 
 set undolevels=1000	" Number of undo levels
 set backspace=indent,eol,start
+set hidden
 
 set mouse=a
 
 set magic
 set title
 set wildmenu
+set wildmode=longest,list,full
 set wildchar=<TAB>
 
 set guifont=FiraCode\ Nerd\ Font
-colorscheme desert
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
@@ -82,13 +88,26 @@ syntax enable
 map <Space> <Nop>
 let mapleader = "\<Space>"
 
+
 map <silent> <leader>n :NERDTreeToggle<return>
-map <leader>w :w<return>
+
+map <leader>wc <C-w>c
+map <leader>ws <C-w>s
+map <leader>wv <C-w>v
+map <leader>wh <C-w>h
+map <leader>wj <C-w>j
+map <leader>wk <C-w>k
+map <leader>wl <C-w>l
+
+map <leader>fw :w<return>
+
 map <leader>bn :bn<return>
+map gb :bn<return>
 map <leader>bp :bp<return>
 map <leader>bd :bd<return>
+map <leader>be :e
 map <silent> <leader>b. :CtrlPBuffer<return>
-map <silent> <leader>e :CtrlPMixed<return>
+map <silent> <leader>e. :CtrlPMixed<return>
 let g:ctrlp_map = "<leader>."
 
 inoremap jj <ESC>
@@ -103,11 +122,12 @@ nnoremap <C-l> <C-w>l
 command! W execute 'write !sudo tee % > /dev/null' <bar> edit!
 command! Wq execute 'write !sudo tee % > /dev/null' <bar> q!
 
-command! Trim %s/\s\+$//g
+command! Trim %s/\s\+$//ge
 
 augroup vimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC | AirlineRefresh
-    autocmd InsertEnter * :set norelativenumber
-    autocmd InsertLeave * :set relativenumber
+    autocmd BufWritePre * Trim
+    autocmd InsertEnter * set norelativenumber
+    autocmd InsertLeave * set relativenumber
 augroup end

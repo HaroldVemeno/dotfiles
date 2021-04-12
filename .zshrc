@@ -1,4 +1,6 @@
 stty -ixon
+
+zmodload zsh/zprof
 # Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -13,7 +15,7 @@ setopt autocd                                                   # if only direct
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' rehash true                              # automatically find new executables in path
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -51,13 +53,13 @@ bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
-## Alias section 
+## Alias section
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit && git push'
 
-# Theming section  
+# Theming section
 autoload -U compinit colors zcalc
 compinit -d
 colors
@@ -85,20 +87,20 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
+bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # Apply different settigns for different terminals
 case $(basename "$(cat "/proc/$PPID/comm")") in
   login)
-#    	RPROMPT="%{$fg[red]%} %(?..[%?])" 
-    	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
+#    	RPROMPT="%{$fg[red]%} %(?..[%?])"
+        alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
     ;;
 #  'tmux: server')
 #        RPROMPT='$(git_prompt_string)'
 #		## Base16 Shell color themes.
 #		#possible themes: 3024, apathy, ashes, atelierdune, atelierforest, atelierhearth,
-#		#atelierseaside, bespin, brewer, chalk, codeschool, colors, default, eighties, 
+#		#atelierseaside, bespin, brewer, chalk, codeschool, colors, default, eighties,
 #		#embers, flat, google, grayscale, greenscreen, harmonic16, isotope, londontube,
 #		#marrakesh, mocha, monokai, ocean, paraiso, pop (dark only), railscasts, shapesifter,
 #		#solarized, summerfruit, tomorrow, twilight
@@ -120,10 +122,10 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
 esac
- 
+
 #TE=$(ps -p $(ps -p $$ -o ppid=) o args=)
 
-# case $TE in 
+# case $TE in
     # vim|nvim) ;;
     # *) bindkey -v
 # esac
@@ -178,6 +180,7 @@ weather()
 }
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
+alias dots=dotfiles
 #projects () {
 #    cd ~/Projects
 #    cd $(\ls | fzf)
@@ -185,8 +188,15 @@ alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 
 #[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 eval "$(fasd --init auto)"
-alias e="f -e vim"
+e v () {
+    [ "$#" -eq 0 ] && $VISUAL
+    [ "$#" -ne 0 ] && f -e vim $@
+}
+
+#alias e="f -e vim"
+#alias v="f -e vim"
 
 source /home/stepan/.config/broot/launcher/bash/br
 eval "$(starship init zsh)"
 eval  $(thefuck --alias)
+
