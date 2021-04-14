@@ -28,7 +28,6 @@ end
 local function dprint(a)
     naughty.notify({text=a, maxheight=300})
 end
-
 -- Handle runtime errors after startup
 do
     local in_error = false
@@ -66,8 +65,19 @@ filemanager = "thunar"
 gui_editor = "emacs"
 terminal = os.getenv("TERMINAL") or "alacritty"
 titlebarson = false
+statusbaron = true
 
+local function setStatusBarVisibility(v)
+    statusbaron = v
+    for s in screen do
+        s.mywibox.visible = statusbaron
+    end
+end
 
+local function toggleStatusBar()
+    statusbaron = not statusbaron
+    setStatusBarVisibility(statusbaron)
+end
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -83,7 +93,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.tile.top,
     bling.layout.mstab,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.max.fullscreen,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
@@ -343,22 +353,25 @@ globalkeys = gears.table.join(
     {description="toggle titlebars", group="layout"}),
     awful.key({ modkey, "Control" }, "f",
         function ()
-            awful.layout.set(awful.layout.suit.max.fullscreen)
+            awful.layout.set(awful.layout.suit.max)
+            setStatusBarVisibility(false)
         end,
     {description="fullscreen layout", group="layout"}),
     awful.key({ modkey, "Control" }, "m",
         function ()
             awful.layout.set(awful.layout.suit.max)
+            setStatusBarVisibility(true)
         end,
     {description="maximized layout", group="layout"}),
     awful.key({ modkey, "Control" }, "t",
         function ()
             awful.layout.set(awful.layout.suit.tile)
+            setStatusBarVisibility(true)
         end,
     {description="master stack layout", group="layout"}),
     awful.key({ modkey, "Control" }, "b",
         function()
-            statusbar[mouse.screen].visible = not statusbar[mouse.screen].visible
+            toggleStatusBar()
         end,
     {description="toggle bar", group="layout"}),
 
