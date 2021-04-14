@@ -25,7 +25,7 @@ if awesome.startup_errors then
                                   text = awesome.startup_errors })
 end
 
-local function dprint(a) 
+local function dprint(a)
     naughty.notify({text=a, maxheight=300})
 end
 
@@ -240,7 +240,7 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
-	
+
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
@@ -288,7 +288,7 @@ beautiful.gap_single_client = true
 globalkeys = gears.table.join(
 -- custom
     awful.key({ modkey,           }, "space",
-        function ()   
+        function ()
             awful.util.spawn_with_shell("~/scripts/changekeymap", false)
         end,
         {description="change keyboard map", group="custom"}),
@@ -309,7 +309,7 @@ globalkeys = gears.table.join(
         function ()
             beautiful.useless_gap = beautiful.useless_gap - 8
             if beautiful.useless_gap < 0
-                then beautiful.useless_gap = 0 
+                then beautiful.useless_gap = 0
             end
             awful.screen.connect_for_each_screen(function(s)
               awful.layout.arrange(s)
@@ -317,46 +317,51 @@ globalkeys = gears.table.join(
         end,
     {description="decrease gap size", group="layout"}),
     awful.key({ modkey,           }, "Tab",
-        function () 
+        function ()
             awful.layout.inc(1)
         end,
     {description="next layout", group="layout"}),
     awful.key({ modkey, "Shift"   }, "Tab",
-        function () 
+        function ()
             awful.layout.inc(-1)
         end,
     {description="previous layout", group="layout"}),
     awful.key({ modkey,           }, "i",
-        function () 
-            if titlebarson then 
-                for _, c in ipairs(client.get()) do 
+        function ()
+            if titlebarson then
+                for _, c in ipairs(client.get()) do
                     awful.titlebar.hide(c)
                 end
                 titlebarson = false
-            else 
-                for _, c in ipairs(client.get()) do 
+            else
+                for _, c in ipairs(client.get()) do
                     awful.titlebar.show(c)
                 end
                 titlebarson = true
             end
         end,
     {description="toggle titlebars", group="layout"}),
-    awful.key({ modkey, "Control" }, "f", 
+    awful.key({ modkey, "Control" }, "f",
         function ()
             awful.layout.set(awful.layout.suit.max.fullscreen)
         end,
     {description="fullscreen layout", group="layout"}),
-    awful.key({ modkey, "Control" }, "m", 
+    awful.key({ modkey, "Control" }, "m",
         function ()
             awful.layout.set(awful.layout.suit.max)
         end,
     {description="maximized layout", group="layout"}),
-    awful.key({ modkey, "Control" }, "g", 
+    awful.key({ modkey, "Control" }, "t",
         function ()
             awful.layout.set(awful.layout.suit.tile)
         end,
     {description="master stack layout", group="layout"}),
--- semidefault
+    awful.key({ modkey, "Control" }, "b",
+        function()
+            statusbar[mouse.screen].visible = not statusbar[mouse.screen].visible
+        end,
+    {description="toggle bar", group="layout"}),
+
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -592,21 +597,21 @@ end
 local function table_length(tbl)
   local getN = 0
   if table == nil then return 0 end
-  for _ in pairs(tbl) do 
-    getN = getN + 1 
+  for _ in pairs(tbl) do
+    getN = getN + 1
   end
   return getN
 end
 
 globalkeys = gears.table.join(globalkeys,
     awful.key({ modkey }, "#19",
-        function () 
+        function ()
             local s = awful.screen.focused()
             if
                  table_length(s.tags) ==
                  table_length(s.selected_tags)
             then awful.tag.viewnone(s)
-            else 
+            else
                 awful.tag.viewmore(s.tags)
             end
         end,
@@ -621,7 +626,7 @@ globalkeys = gears.table.join(globalkeys,
         end,
         {description="toggle focused client on all tags", group="tag"})
 )
-            
+
 
 clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise()
@@ -681,7 +686,7 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" } },
       properties = { titlebars_enabled = true }
     },
-	
+
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
