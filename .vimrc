@@ -105,7 +105,7 @@ map <leader>bn :bn<return>
 map gb :bn<return>
 map <leader>bp :bp<return>
 map <leader>bd :bd<return>
-map <leader>be :e
+map <leader>be :e<space>
 map <silent> <leader>b. :CtrlPBuffer<return>
 map <silent> <leader>e. :CtrlPMixed<return>
 let g:ctrlp_map = "<leader>."
