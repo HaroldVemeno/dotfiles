@@ -188,9 +188,32 @@ alias dots=dotfiles
 
 #[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 eval "$(fasd --init auto)"
+
 e v () {
-    [ "$#" -eq 0 ] && $VISUAL
-    [ "$#" -ne 0 ] && f -e vim $@
+    [ "$#" -eq 0 ] && $VISUAL || f -e vim $@
+}
+
+unalias sd sf s zz
+
+s () {
+    FILE="$(fasd -lr $@ | fzf --query="$@" -0 -1 --tac --cycle)"
+    fasd -A "$FILE"
+    echo $FILE
+}
+sd () {
+    FILE="$(fasd -ldr $@ | fzf --query="$@" -0 -1 --tac --cycle)"
+    fasd -A "$FILE"
+    echo $FILE
+}
+sf () {
+    FILE="$(fasd -lfr $@ | fzf --query="$@" -0 -1 --tac --cycle)"
+    fasd -A "$FILE"
+    echo $FILE
+}
+
+zz () {
+    FILE="$(sd)"
+    cd "$FILE"
 }
 
 #alias e="f -e vim"
