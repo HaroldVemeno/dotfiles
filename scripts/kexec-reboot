@@ -1,5 +1,5 @@
 #!/bin/sh
 
-VERSION='5.11'
+VERSION="$(uname -r | cut -d'.' -f 1,2)"
 sudo kexec -l /boot/vmlinuz-"$VERSION"-x86_64 --initrd=/boot/initramfs-"$VERSION"-x86_64.img --reuse-cmdline
 sudo systemctl kexec
