@@ -12,6 +12,7 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Freedesktop menu
 local freedesktop = require("freedesktop")
+local lain = require("lain")
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 --require("awful.hotkeys_popup.vim")
 
@@ -60,9 +61,9 @@ beautiful.font              = "Noto Sans Regular 10"
 beautiful.notification_font = "Noto Sans Bold 14"
 
 -- This is used later as the default terminal and editor to run.
-browser = "exo-open --launch WebBrowser" or "firefox"
-filemanager = "exo-open --launch FileManager" or "thunar"
-gui_editor = "gvim"
+browser = "firefox"
+filemanager = "thunar"
+gui_editor = "emacs"
 terminal = os.getenv("TERMINAL") or "alacritty"
 titlebarson = false
 
@@ -87,6 +88,8 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
+    lain.layout.cascade,
+    lain.layout.cascade.tile,
     awful.layout.suit.magnifier,
     awful.layout.suit.floating,
     -- awful.layout.suit.corner.nw,
