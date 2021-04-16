@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+                      require("awful.hotkeys_popup.keys")
 -- Freedesktop menu
 local freedesktop = require("freedesktop")
 local lain = require("lain")
