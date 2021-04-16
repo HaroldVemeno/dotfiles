@@ -7,9 +7,6 @@
 local themes_path = require("gears.filesystem").get_themes_dir()
 theme = {}
 
-theme.font              = "FiraCode Nerd Font Regular 10"
-theme.notification_font = "FiraCode Nerd Font Bold 14"
-
 theme.bg_normal   = "#141A1B"
 theme.tabbar_bg_normal = "#141A1B"
 theme.bg_focus    = "#222B2E"
@@ -82,7 +79,8 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "cesious/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "cesious/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "cesious/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path .. "cesious/awesome-scrabble.png"
+theme.wallpaper = "/usr/share/backgrounds/wallpapers-juhraya/Manjaro Juhraya (without blur) - Mr_Glitch(Projekt:Root).png"
+--theme.wallpaper = themes_path .. "cesious/awesome-scrabble.png"
 --theme.wallpaper = "~/Pictures/velerybus maxibílus.png"
 
 -- You can use your own layout icons like this:
@@ -114,7 +112,7 @@ theme.layout_centerworkh = theme.lain_icons .. "centerworkh.png" -- centerwork.h
 
 theme.awesome_icon = themes_path .. "cesious/icons/manjaro64.png"
 
--- Define the icon theme for application icons. If not set then the icons 
+-- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = "Adwaita"
 
