@@ -176,9 +176,11 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
+alias sudo='sudo '
 
 alias cls='clear'
 alias cl='clear'
+alias q='exit'
 
 alias yeet='exec'
 
@@ -190,6 +192,8 @@ weather()
     [ "$(tput cols)" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
+alias unicode-test='curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt | less'
+alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | less'
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 alias dots=dotfiles
@@ -224,7 +228,7 @@ sf () {
 }
 
 zz () {
-    FILE="$(sd)"
+    FILE="$(sd $@)"
     cd "$FILE"
 }
 

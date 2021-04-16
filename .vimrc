@@ -98,6 +98,7 @@ map <leader>wh <C-w>h
 map <leader>wj <C-w>j
 map <leader>wk <C-w>k
 map <leader>wl <C-w>l
+map <leader>wq :wq<return>
 
 map <leader>fw :w<return>
 
