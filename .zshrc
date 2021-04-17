@@ -197,6 +197,8 @@ alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | le
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 alias dots=dotfiles
+
+alias doom="$HOME/.emacs.doom/bin/doom"
 #projects () {
 #    cd ~/Projects
 #    cd $(\ls | fzf)
@@ -226,10 +228,13 @@ sf () {
     fasd -A "$FILE"
     echo $FILE
 }
-
 zz () {
     FILE="$(sd $@)"
     cd "$FILE"
+}
+sv se () {
+    FILE="$(sf $@)"
+    $EDITOR "$FILE"
 }
 
 #alias e="f -e vim"
