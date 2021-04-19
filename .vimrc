@@ -81,6 +81,7 @@ set title
 set wildmenu
 set wildmode=longest,list,full
 set wildchar=<TAB>
+set listchars=space:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 set guifont=FiraCode\ Nerd\ Font
 set guioptions-=m  "remove menu bar
@@ -113,6 +114,7 @@ map gb :bn<return>
 map <leader>bp :bp<return>
 map <leader>bd :bd<return>
 map <leader>be :e<space>
+map <leader>s :w<return>
 map <silent> <leader>b. :CtrlPBuffer<return>
 map <silent> <leader>e. :CtrlPMixed<return>
 let g:ctrlp_map = "<leader>."
