@@ -144,10 +144,9 @@ esac
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
-
 export NNN_TRASH=1
 
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+#source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 bindkey -v
 
 nu ()
