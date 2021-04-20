@@ -172,6 +172,7 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias ln='ln -iv'
 alias md='mkdir -pv'
+alias woman='man'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -192,8 +193,8 @@ weather()
     [ "$(tput cols)" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
-alias unicode-test='curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt | less'
-alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | less'
+alias unicode-test='curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt | bat'
+alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | bat'
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 alias dots=dotfiles
