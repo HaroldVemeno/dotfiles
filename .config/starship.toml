@@ -1,4 +1,5 @@
-format = "[ ](#34be5b) $all"
+#format = "[ ](#34be5b) $all"
+format = "[ ](#1793d1) $all"
 
 [character]
 vicmd_symbol = "[❮](#00fff7)"
