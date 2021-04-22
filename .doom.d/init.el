@@ -34,7 +34,7 @@
        ;;fill-column       ; a `fill-column' indicator
        hl-todo             ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
-       ;;indent-guides     ; highlighted indent columns
+       indent-guides       ; highlighted indent columns
        (ligatures +extra)  ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
@@ -43,7 +43,7 @@
        ophints             ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        tabs                ; a tab bar for Emacs
-       treemacs            ; a project drawer, like neotree but cooler
+       (treemacs +lsp)     ; a project drawer, like neotree but cooler
        unicode             ; extended unicode support for various languages
        vc-gutter           ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
@@ -99,7 +99,7 @@
        ;;pass              ; password manager for nerds
        pdf                 ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;rgb               ; creating color strings
+       rgb                 ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
@@ -123,16 +123,16 @@
        ;;elm               ; care for a cup of TEA?
        emacs-lisp          ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
-       ;;ess               ; emacs speaks statistics
+       ;;es               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
        ;;(go +lsp)         ; the hipster dialect
-       (haskell +dante)    ; a language that's lazier than I am
+       (haskell +lsp)      ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        idris               ; a language you can depend on
-       json                ; At least it ain't XML
+       (json +lsp)         ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript          ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
@@ -147,10 +147,10 @@
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +org-bullets)  ; organize your plain life in plain text
-       php                 ; perl's insecure younger brother
+       (php +lsp)          ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       python              ; beautiful is better than ugly
+       (python +lsp)       ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
@@ -160,13 +160,13 @@
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
-       sh                  ; she sells {ba,z,fi}sh shells on the C xor
+       (sh +lsp)           ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web                 ; the tubes
-       yaml                ; JSON, but readable
+       (web +lsp)          ; the tubes
+       (yaml +lsp)         ; JSON, but readable
 
        :email
        ;;(mu4e +gmail)
