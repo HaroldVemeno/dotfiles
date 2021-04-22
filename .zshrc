@@ -23,6 +23,8 @@ setopt histignorealldups
 setopt autocd
 # if only directory path is entered, cd there.
 
+export KEYTIMEOUT=1
+
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -84,6 +86,7 @@ bindkey '^H' backward-kill-word
 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo
 # Shift+tab undo last action
+bindkey -v '^?' backward-delete-char
 
 alias df='df -h'
 # Human-readable sizes
@@ -107,7 +110,6 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
-
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
@@ -177,6 +179,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
 alias sudo='sudo '
+alias emc='emacsclient -n'
 
 alias cls='clear'
 alias cl='clear'
