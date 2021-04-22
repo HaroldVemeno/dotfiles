@@ -79,7 +79,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "cesious/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "cesious/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "cesious/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = "/usr/share/backgrounds/wallpapers-juhraya/Manjaro Juhraya (without blur) - Mr_Glitch(Projekt:Root).png"
+theme.wallpaper = "/usr/share/backgrounds/wallpapers-juhraya/Manjaro Juhraya (clean) - Mr_Glitch(Projekt:Root).png"
 --theme.wallpaper = themes_path .. "cesious/awesome-scrabble.png"
 --theme.wallpaper = "~/Pictures/velerybus maxibílus.png"
 
@@ -110,7 +110,9 @@ theme.layout_cascadetile = theme.lain_icons .. "cascadetile.png" -- cascade.tile
 theme.layout_centerwork  = theme.lain_icons .. "centerwork.png"
 theme.layout_centerworkh = theme.lain_icons .. "centerworkh.png" -- centerwork.horizontal
 
-theme.awesome_icon = themes_path .. "cesious/icons/manjaro64.png"
+-- theme.awesome_icon = themes_path .. "cesious/icons/manjaro64.png"
+-- theme.awesome_icon = "/usr/share/pixmaps/archlinux-logo.png"
+theme.awesome_icon = "/usr/share/archlinux/icons/archlinux-icon-crystal-256.png"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

@@ -298,11 +298,11 @@ beautiful.gap_single_client = true
 -- {{{ Key bindings
 globalkeys = gears.table.join(
 -- custom
-    awful.key({ modkey,           }, "space",
-        function ()
-            awful.util.spawn_with_shell("~/scripts/changekeymap", false)
-        end,
-        {description="change keyboard map", group="custom"}),
+--     awful.key({ modkey,           }, "space",
+--         function ()
+--             awful.util.spawn_with_shell("~/scripts/changekeymap", false)
+--         end,
+--         {description="change keyboard map", group="custom"}),
     awful.key({ modkey,           }, "Escape",
         function ()
 	    awful.util.spawn_with_shell("light-locker-command -l")
@@ -681,7 +681,6 @@ awful.rules.rules = {
           "Gpick",
           "Kruler",
           "MessageWin",  -- kalarm.
-          "Sxiv",
           "Wpa_gui",
           "pinentry",
           "veromix",
