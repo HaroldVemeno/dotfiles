@@ -62,8 +62,8 @@ beautiful.notification_font = "Noto Sans Bold 14"
 
 -- This is used later as the default terminal and editor to run.
 browser = "firefox"
-filemanager = "thunar"
-gui_editor = "emacs"
+filemanager = "pcmanfm"
+gui_editor = "emacsclient -n -c -a ''"
 terminal = os.getenv("TERMINAL") or "alacritty"
 titlebarson = false
 statusbaron = true
@@ -86,6 +86,8 @@ end
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+altkey = "Mod1"
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -423,7 +425,7 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "z", function () awful.spawn(terminal) end,
+    awful.key({ modkey, altkey    }, "z", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -442,12 +444,16 @@ globalkeys = gears.table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)           end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey     }, "b", function () awful.spawn(browser)          end,
+    awful.key({ modkey, altkey    }, "b", function () awful.spawn(browser)          end,
               {description = "launch Browser", group = "launcher"}),
 --    awful.key({ modkey, "Control"}, "Escape", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
 --              {description = "launch rofi", group = "launcher"}),
-    awful.key({ modkey,           }, "e", function () awful.spawn(filemanager)            end,
+    awful.key({ modkey, altkey    }, "f", function () awful.spawn(filemanager)        end,
               {description = "launch filemanager", group = "launcher"}),
+    awful.key({ modkey, altkey    }, "e", function () awful.util.spawn_with_shell(gui_editor, false)        end,
+              {description = "launch editor", group = "launcher"}),
+    awful.key({ modkey, altkey    }, "d", function () awful.spawn('discord')            end,
+              {description = "launch discord", group = "launcher"}),
 --    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                       end,
 --              {description = "select previous", group = "layout"}),
     awful.key({                   }, "Print", function () awful.spawn.with_shell("sleep 0.1 && /usr/bin/i3-scrot -d")   end,
