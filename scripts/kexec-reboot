@@ -1,5 +1,5 @@
 #!/bin/sh
 
-VERSION="$(uname -r | cut -d'.' -f 1,2)"
-sudo kexec -l /boot/vmlinuz-"$VERSION"-x86_64 --initrd=/boot/initramfs-"$VERSION"-x86_64.img --reuse-cmdline
+DEFAULT=linux-zen
+sudo kexec -l /boot/vmlinuz-"$DEFAULT" --initrd=/boot/initramfs-"$DEFAULT".img --reuse-cmdline
 sudo systemctl kexec
