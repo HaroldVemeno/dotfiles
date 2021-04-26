@@ -107,6 +107,9 @@ map <leader>wk <C-w>k
 map <leader>wl <C-w>l
 map <leader>wq :wq<return>
 
+map <leader>qq :q<return>
+map <leader>qQ :q!<return>
+
 map <leader>fw :w<return>
 
 map <leader>bn :bn<return>
@@ -115,6 +118,7 @@ map <leader>bp :bp<return>
 map <leader>bd :bd<return>
 map <leader>be :e<space>
 map <leader>s :w<return>
+map <leader>S :W<return>
 map <silent> <leader>b. :CtrlPBuffer<return>
 map <silent> <leader>e. :CtrlPMixed<return>
 let g:ctrlp_map = "<leader>."
