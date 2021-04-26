@@ -147,6 +147,7 @@ esac
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
 export NNN_TRASH=1
+export EMACSCLIENT='emacsclient -n -c -a ""'
 
 #source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 bindkey -v
@@ -165,6 +166,8 @@ alias lla='exa -Fla --icons --group-directories-first'
 alias lal='exa -Fla --icons --group-directories-first'
 alias lt='exa -FT --icons --group-directories-first'
 alias lta='exa -FTa --icons --group-directories-first'
+alias lr='exa -FR --icons --group-directories-first'
+alias lra='exa -FRa --icons --group-directories-first'
 alias nf='neofetch'
 alias count='wc -l'
 alias trm='trash-put -iv'
@@ -172,6 +175,7 @@ alias rm='rm -iv --preserve-root'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias ln='ln -iv'
+alias mkdir='mkdir -pv'
 alias md='mkdir -pv'
 alias woman='man'
 alias grep='grep --color=auto'
@@ -179,8 +183,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
 alias sudo='sudo '
-alias emc='emacsclient -n'
-
+alias emc="$EMACSCLIENT"
 alias cls='clear'
 alias cl='clear'
 alias q='exit'
@@ -210,8 +213,12 @@ alias doom="$HOME/.emacs.doom/bin/doom"
 #[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 eval "$(fasd --init auto)"
 
-e v () {
-    [ "$#" -eq 0 ] && $VISUAL || f -e vim $@
+v () {
+    [ "$#" -eq 0 ] && vim || f -e 'vim' $@
+}
+
+e () {
+    [ "$#" -eq 0 ] && emc || f -e "$EMACSCLIENT" $@
 }
 
 unalias sd sf s zz
@@ -235,9 +242,13 @@ zz () {
     FILE="$(sd $@)"
     cd "$FILE"
 }
-sv se () {
-    FILE="$(sf $@)"
-    $EDITOR "$FILE"
+sv () {
+    file="$(sf $@)"
+    vim "$file"
+}
+se () {
+    file="$(sf $@)"
+    emc "$file"
 }
 
 #alias e="f -e vim"
