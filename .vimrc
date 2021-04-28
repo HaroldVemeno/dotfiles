@@ -9,17 +9,19 @@ endif
 call plug#begin()
 
 Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim'
+"Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'RRethy/vim-hexokinase'
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vimsence/vimsence'
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
+filetype plugin on
+filetype indent on
 colorscheme desert
 
 let g:airline_powerline_fonts = 1
@@ -37,8 +39,8 @@ let g:airline#extensions#tabline#show_tab_nr = 1       " disable tab numbers
 let g:airline#extensions#tabline#show_tab_type = 1     " disables the weird ornage arrow on the tabline
 let g:airline#extensions#tabline#buff_label_first = 1
 
-let g:ctrlp_working_path_mode = 'ra'
-
+"let g:ctrlp_working_path_mode = 'ra'
+let g:Hexokinase_highlighters = ['backgroundfull']
 
 "" General
 set number	" Show line numbers
@@ -112,15 +114,13 @@ map <leader>qQ :q!<return>
 
 map <leader>fw :w<return>
 
-map <leader>bn :bn<return>
+map <leader>b :bn<return>
 map gb :bn<return>
-map <leader>bp :bp<return>
-map <leader>bd :bd<return>
-map <leader>be :e<space>
+map <leader>p :p<return>
+map <leader>d :d<return>
+map <leader>e :e<space>
 map <leader>s :w<return>
 map <leader>S :W<return>
-map <silent> <leader>b. :CtrlPBuffer<return>
-map <silent> <leader>e. :CtrlPMixed<return>
 let g:ctrlp_map = "<leader>."
 
 inoremap jj <ESC>
