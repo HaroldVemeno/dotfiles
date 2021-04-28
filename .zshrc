@@ -148,6 +148,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
 export NNN_TRASH=1
 export EMACSCLIENT='emacsclient -n -c -a ""'
+export EMACSTAB='emacsclient -n -a ""'
+source ~/.config/lf/lficons
 
 #source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 bindkey -v
@@ -183,10 +185,13 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
 alias sudo='sudo '
+alias exec='exec '
 alias emc="$EMACSCLIENT"
+alias emt="$EMACSTAB"
 alias cls='clear'
 alias cl='clear'
 alias q='exit'
+alias lf='lfrun'
 
 alias yeet='exec'
 
@@ -258,3 +263,5 @@ source /home/stepan/.config/broot/launcher/bash/br
 eval "$(starship init zsh)"
 eval  $(thefuck --alias)
 
+# In emacs: go to project root if availible
+cd "${PROOT:-$PWD}"
