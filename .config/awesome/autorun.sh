@@ -27,6 +27,7 @@ run thunar --daemon
 run pcmanfm -d
 run pa-applet
 run pamac-tray
+run pasystray
 pgrep redshift || run redshift-gtk
 run emacs --daemon
 
