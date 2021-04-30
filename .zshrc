@@ -1,41 +1,46 @@
+# no weird keybinds inherited from old terminals
 stty -ixon
 
-zmodload zsh/zprof
-# Options section
-setopt correct
-# Auto correct mistakes
-setopt extendedglob
-# Extended globbing. Allows using regular expressions with *
-setopt nocaseglob
-# Case insensitive globbing
-setopt rcexpandparam
-# Array expension with parameters
-setopt nocheckjobs
-# Don't warn about running processes when exiting
-setopt numericglobsort
-# Sort filenames numerically when it makes sense
-setopt nobeep
-# No beep
-setopt appendhistory
-# Immediately append history instead of overwriting
-setopt histignorealldups
-# If a new command is a duplicate, remove the older one
-setopt autocd
-# if only directory path is entered, cd there.
+### ZSH OPTIONS
 
+# Zsh profiling
+zmodload zsh/zprof
+
+# Auto correct mistakes
+setopt correct
+# Extended globbing. Allows using regular expressions with *
+setopt extendedglob
+# Case insensitive globbing
+setopt nocaseglob
+# Array expension with parameters
+setopt rcexpandparam
+# Don't warn about running processes when exiting
+setopt nocheckjobs
+# Sort filenames numerically when it makes sense
+setopt numericglobsort
+# No beep
+setopt nobeep
+# Immediately append history instead of overwriting
+setopt appendhistory
+# If a new command is a duplicate, remove the older one
+setopt histignorealldups
+# if only directory path is entered, cd there.
+setopt autocd
+
+# No wierd esc shenanigans
 export KEYTIMEOUT=1
 
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Case insensitive tab completion
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# Automatically find new executables in path
 zstyle ':completion:*' rehash true
-# automatically find new executables in path
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-HISTFILE=~/.zhistory
+zstyle ':completion:*' cache-path ~/.cache/zsh/cache
+HISTFILE=~/.local/share/zsh/history
 HISTSIZE=100000
 SAVEHIST=100000
 WORDCHARS=${WORDCHARS//\/[&.;]}
@@ -45,53 +50,33 @@ WORDCHARS=${WORDCHARS//\/[&.;]}
 ## Keybindings section
 bindkey -e
 bindkey '^[[7~' beginning-of-line
-# Home key
 bindkey '^[[H' beginning-of-line
-# Home key
 if [[ "${terminfo[khome]}" != "" ]]; then
   bindkey "${terminfo[khome]}" beginning-of-line
-  # [Home] - Go to beginning of line
 fi
 bindkey '^[[8~' end-of-line
-# End key
 bindkey '^[[F' end-of-line
-# End key
 if [[ "${terminfo[kend]}" != "" ]]; then
   bindkey "${terminfo[kend]}" end-of-line
-  # [End] - Go to end of line
 fi
 bindkey '^[[2~' overwrite-mode
-# Insert key
 bindkey '^[[3~' delete-char
-# Delete key
 bindkey '^[[C'  forward-char
-# Right key
 bindkey '^[[D'  backward-char
-# Left key
 bindkey '^[[5~' history-beginning-search-backward
-# Page up key
 bindkey '^[[6~' history-beginning-search-forward
-# Page down key
 
 # Navigate words with ctrl+arrow keys
 bindkey '^[Oc' forward-word
-#
 bindkey '^[Od' backward-word
-#
 bindkey '^[[1;5D' backward-word
-#
 bindkey '^[[1;5C' forward-word
-#
 bindkey '^H' backward-kill-word
 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo
 # Shift+tab undo last action
 bindkey -v '^?' backward-delete-char
 
-alias df='df -h'
-# Human-readable sizes
-alias free='free -m'
-# Show sizes in MB
 
 # Theming section
 autoload -U compinit colors zcalc
@@ -111,7 +96,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
-## Plugins section: Enable fish style features
+### ZSH RICE
 # Use syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Use history substring search
@@ -137,30 +122,12 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
     ;;
 esac
 
-#TE=$(ps -p $(ps -p $$ -o ppid=) o args=)
 
-# case $TE in
-    # vim|nvim) ;;
-    # *) bindkey -v
-# esac
-
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
-export NNN_TRASH=1
-export EMACSCLIENT='emacsclient -n -c -a ""'
-export EMACSTAB='emacsclient -n -a ""'
-source ~/.config/lf/lficons
-
-#source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+### VI KEYBINDINGS
 bindkey -v
 
-nu ()
-{
-    unset STARSHIP_SHELL
-    /usr/bin/nu
-}
-
-
+### ALIASES
+# Use exa instead of ls (and soma aliases)
 alias ls='exa -F --icons --group-directories-first'
 alias la='exa -Fa --icons --group-directories-first'
 alias ll='exa -Fl --icons --group-directories-first'
@@ -170,7 +137,7 @@ alias lt='exa -FT --icons --group-directories-first'
 alias lta='exa -FTa --icons --group-directories-first'
 alias lr='exa -FR --icons --group-directories-first'
 alias lra='exa -FRa --icons --group-directories-first'
-alias nf='neofetch'
+# Some sane defaults
 alias count='wc -l'
 alias trm='trash-put -iv'
 alias rm='rm -iv --preserve-root'
@@ -178,24 +145,38 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias ln='ln -iv'
 alias mkdir='mkdir -pv'
+alias df='df -h'
+alias free='free -m'
 alias md='mkdir -pv'
-alias woman='man'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
+# Please expend aliases after these
 alias sudo='sudo '
 alias exec='exec '
-alias emc="$EMACSCLIENT"
-alias emt="$EMACSTAB"
+# Genral aliases
+alias yeet='exec '
+alias woman='man'
 alias cls='clear'
 alias cl='clear'
 alias q='exit'
 alias lf='lfrun'
+alias gdbt='gdb -tui'
+alias nf='neofetch'
 
-alias yeet='exec'
+# Terminal emulator tests
+alias unicode-test='curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt | bat'
+alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | bat'
 
+# Dotfile git aliases
+alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
+alias dots=dotfiles
+
+# A terminal pastebin
 alias termbin='nc termbin.com 9999'
+
+# Weather
 weather()
 {
     # change Paris to your default location
@@ -203,21 +184,32 @@ weather()
     [ "$(tput cols)" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
-alias unicode-test='curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt | bat'
-alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | bat'
 
-alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
-alias dots=dotfiles
+### MISC
+
+# Some options and settings for stuff
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
+export NNN_TRASH=1
+source ~/.config/lf/lficons
+
+## Emacs
+export EMACSCLIENT='emacsclient -n -c -a ""'
+export EMACSTAB='emacsclient -n -a ""'
+export EMACSNW='emacsclient -nw -a ""'
 
 alias doom="$HOME/.emacs.doom/bin/doom"
-#projects () {
-#    cd ~/Projects
-#    cd $(\ls | fzf)
-#}
+alias emc="$EMACSCLIENT"
+alias emt="$EMACSTAB"
+alias enw="$EMACSNW"
 
-#[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+# Go to the project root if started in emacs
+cd "${PROOT:-$PWD}"
+
+## FASD
 eval "$(fasd --init auto)"
 
+# Quick fuzzy editing
 v () {
     [ "$#" -eq 0 ] && vim || f -e 'vim' $@
 }
@@ -227,7 +219,8 @@ e () {
 }
 
 unalias sd sf s zz
-
+# Replace default fasd selections with fzf
+# Also sv, se for editing
 s () {
     FILE="$(fasd -lr $@ | fzf --query="$@" -0 -1 --tac --cycle)"
     fasd -A "$FILE"
@@ -256,12 +249,11 @@ se () {
     emc "$file"
 }
 
-#alias e="f -e vim"
-#alias v="f -e vim"
+## Broot (kinda meh)
+#source /home/stepan/.config/broot/launcher/bash/br
 
-source /home/stepan/.config/broot/launcher/bash/br
+## Fuck
+#eval  $(thefuck --alias)
+
+## THE PROMPT
 eval "$(starship init zsh)"
-eval  $(thefuck --alias)
-
-# In emacs: go to project root if availible
-cd "${PROOT:-$PWD}"
