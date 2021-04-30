@@ -1,7 +1,8 @@
+###### ZSH CONFIG
+### ZSH OPTIONS
+
 # no weird keybinds inherited from old terminals
 stty -ixon
-
-### ZSH OPTIONS
 
 # Zsh profiling
 zmodload zsh/zprof
@@ -101,6 +102,8 @@ export LESS=-r
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Use history substring search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# Fzf keybinds
+source ~/.local/share/zsh/plugins/key-bindings.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
