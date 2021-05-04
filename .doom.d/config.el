@@ -120,4 +120,4 @@
        :leader :nve "f M"
        #'ranger)
 
-(map! :map general-override-mode-map :nvei "C-SPC" #'doom/leader)
+(map! :map general-override-mode-map :nvie "M-m" #'doom/leader)
