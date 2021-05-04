@@ -33,7 +33,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -49,15 +49,16 @@
 ;; To get information about any of these functions/macros, move the cursor over
 ;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
 ;; This will open documentation for it, including demos of how they are used.
-;
+                                        ;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 13))
 (setq display-line-numbers-type 'relative)
 
-(require 'elcord)
-(elcord-mode)
+(setq text-scale-mode-step 1.1)
+
+(setq evil-snipe-scope 'visible)
 
 (after! cc-mode (set-ligatures! '(c++-mode) nil))
 
@@ -65,21 +66,58 @@
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
 (defun elcord--disable-elcord-if-no-frames (f)
-    (declare (ignore f))
-    (when (let ((frames (delete f (visible-frame-list))))
-            (or (null frames)
-                (and (null (cdr frames))
-                     (eq (car frames) terminal-frame))))
-      (elcord-mode -1)
-      (add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)))
+  (ignore f)
+  (when (let ((frames (delete f (visible-frame-list))))
+          (or (null frames)
+              (and (null (cdr frames))
+                   (eq (car frames) terminal-frame))))
+    (elcord-mode -1)))
 
-  (defun elcord--enable-on-frame-created (f)
-    (declare (ignore f))
-    (elcord-mode +1))
+(defun elcord--enable-on-frame-created (f)
+  (ignore f)
+  (elcord-mode +1))
 
-  (defun my/elcord-mode-hook ()
-    (if elcord-mode
-        (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
-      (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+(add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)
 
-  (add-hook 'elcord-mode-hook 'my/elcord-mode-hook)
+(defun my/elcord-mode-hook ()
+  (if elcord-mode
+      (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
+    (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+
+(after! elcord (elcord-mode +1))
+(add-hook! 'elcord-mode-hook 'my/elcord-mode-hook)
+
+(after! ranger (ranger-override-dired-mode t))
+
+(add-hook! 'dired-mode-hook 'centaur-tabs-local-mode)
+(add-hook! 'ranger-mode-hook 'centaur-tabs-local-mode)
+
+(defun my/display-set-relative ()
+  (if (eq display-line-numbers t)
+      (setq display-line-numbers 'relative)))     ; or 'visual
+
+(defun my/display-set-absolute ()
+  (if (eq display-line-numbers 'relative)
+      (setq display-line-numbers t)))
+
+
+(add-hook! 'evil-insert-state-entry-hook #'my/display-set-absolute)
+(add-hook! 'evil-insert-state-exit-hook #'my/display-set-relative )
+
+(map!  :desc "Kill buffer"
+       :leader :nve "d"
+       #'kill-current-buffer)
+(map!  :desc "Other window"
+       :leader :nve "w w"
+       #'other-window)
+(map!  :desc "Kill other windows"
+       :leader :nve "w a"
+       #'delete-other-windows)
+(map!  :desc "Open dired (deer)"
+       :leader :nve "f m"
+       #'dired-jump)
+(map!  :desc "Open ranger"
+       :leader :nve "f M"
+       #'ranger)
+
+(map! :map general-override-mode-map :nvei "C-SPC" #'doom/leader)
