@@ -192,6 +192,7 @@ weather()
 
 # Some options and settings for stuff
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export PAGER="bat"
 export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
 export NNN_TRASH=1
 source ~/.config/lf/lficons
