@@ -1,4 +1,5 @@
-###### ZSH CONFIG
+###### ZSH CONFIG ######
+
 ### ZSH OPTIONS
 
 # no weird keybinds inherited from old terminals
@@ -150,7 +151,6 @@ alias ln='ln -iv'
 alias mkdir='mkdir -pv'
 alias df='df -h'
 alias free='free -m'
-alias md='mkdir -pv'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -161,6 +161,7 @@ alias exec='exec '
 # Genral aliases
 alias yeet='exec '
 alias woman='man'
+alias md='mkdir -pv'
 alias cls='clear'
 alias cl='clear'
 alias q='exit'
@@ -209,6 +210,13 @@ alias enw="$EMACSNW"
 
 # Go to the project root if started in emacs
 cd "${PROOT:-$PWD}"
+
+## TMUX
+
+alias tmx='tmux'
+alias tmn='tmux new-session -s'
+alias tma='tmux attach -t'
+alias tmls='tmux ls'
 
 ## FASD
 eval "$(fasd --init auto)"
