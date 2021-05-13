@@ -70,6 +70,7 @@ set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
 "set termguicolors
 "set cursorline cursorcolumn
+set splitbelow splitright
 
 set path+=**
 
@@ -101,7 +102,6 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
-set splitbelow splitright
 
 syntax enable
 
@@ -111,27 +111,24 @@ let mapleader = "\<Space>"
 
 map <silent> <leader>n :NERDTreeToggle<return>
 
-map <leader>wc <C-w>c
-map <leader>ws <C-w>s
-map <leader>wv <C-w>v
-map <leader>wh <C-w>h
-map <leader>wj <C-w>j
-map <leader>wk <C-w>k
-map <leader>wl <C-w>l
-map <leader>wq :wq<return>
+map          <leader>wc <C-w>c
+map          <leader>wd <C-w>c
+map          <leader>ws <C-w>s
+map          <leader>wv <C-w>v
+map          <leader>wh <C-w>h
+map          <leader>wj <C-w>j
+map          <leader>wk <C-w>k
+map          <leader>wl <C-w>l
 
-map <leader>qq :q<return>
-map <leader>qQ :q!<return>
+map <silent> <leader>fs :w<return>
 
-map <leader>fw :w<return>
-
-map <leader>b :bn<return>
-map gb :bn<return>
-map <leader>p :p<return>
-map <leader>d :d<return>
-map <leader>e :e<space>
-map <leader>s :w<return>
-map <leader>S :W<return>
+map <silent> <leader>b  :b<return>
+map <silent> <leader>]  :bnext<return>
+map <silent> <leader>[  :bprevious<return>
+map <silent> <leader>d  :bdelete<return>
+map          <leader>e  :edit<space>
+map <silent> <leader>s  :update<return>
+map <silent> <leader>S  :W<return>
 let g:ctrlp_map = "<leader>."
 
 inoremap jj <ESC>
@@ -143,7 +140,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-command! W execute 'write !sudo tee % > /dev/null' <bar> edit!
+command! W  execute 'write !sudo tee % > /dev/null' <bar> edit!
 command! Wq execute 'write !sudo tee % > /dev/null' <bar> q!
 
 command! Trim %s/\s\+$//ge
