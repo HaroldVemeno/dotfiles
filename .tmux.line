@@ -15,7 +15,16 @@ set -g status-left-length "100"
 setw -g window-status-activity-style "none"
 setw -g window-status-separator ""
 setw -g window-status-style "none,fg=colour85,bg=colour234"
-set -g status-left "#[fg=colour17,bg=colour190] #S #[fg=colour190,bg=colour234,nobold,nounderscore,noitalics]"
+set -g status-left "#{prefix_highlight}#[fg=colour17,bg=colour190] #S #[fg=colour190,bg=colour234,nobold,nounderscore,noitalics]"
+#set -g status-left "#{?client_prefix,#[fg=blue]#[bg=white]#[bg=bold] PREFIX ,}#[fg=colour17,bg=colour190] #S #[fg=colour190,bg=colour234,nobold,nounderscore,noitalics]"
 set -g status-right "#[fg=colour238,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour255,bg=colour238] %Y-%m-%d  %H:%M #[fg=colour190,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour17,bg=colour190] #h "
 setw -g window-status-format "#[fg=colour85,bg=colour234] #I #[fg=colour85,bg=colour234] #W "
 setw -g window-status-current-format "#[fg=colour234,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour255,bg=colour238] #I #[fg=colour255,bg=colour238] #W #[fg=colour238,bg=colour234,nobold,nounderscore,noitalics]"
+set -g @prefix_highlight_show_copy_mode 'on'
+set -g @prefix_highlight_show_sync_mode 'on'
+set -g @prefix_highlight_output_suffix ' '
+set -g @prefix_highlight_prefix_prompt 'PREFIX'
+set -g @prefix_highlight_copy_prompt 'COPY'
+set -g @prefix_highlight_sync_prompt 'SYNC'
+set -g @prefix_highlight_copy_mode_attr 'fg=black,bg=#fdb10c,bold'
+set -g @prefix_highlight_sync_mode_attr 'fg=#0b0b66,bg=#0bd70c,bold'
