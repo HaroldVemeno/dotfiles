@@ -175,7 +175,7 @@ alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | ba
 
 # Dotfile git aliases
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
-alias dots=dotfiles
+alias dots="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 
 # A terminal pastebin
 alias termbin='nc termbin.com 9999'
