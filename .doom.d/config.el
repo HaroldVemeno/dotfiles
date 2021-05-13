@@ -35,7 +35,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
-
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -54,7 +53,6 @@
 ;; they are implemented.
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 13))
-(setq display-line-numbers-type 'relative)
 
 (setq text-scale-mode-step 1.1)
 
@@ -120,4 +118,16 @@
        :leader :nve "f M"
        #'ranger)
 
-(map! :map general-override-mode-map :nvie "M-m" #'doom/leader)
+(defun my/vterm-split-right ()
+  "Create a new vterm window to the right of the current one."
+  (interactive)
+  (let* ((ignore-window-parameters t)
+         (dedicated-p (window-dedicated-p)))
+    (split-window-horizontally)
+    (other-window 1)
+    (+vterm/here default-directory)))
+;; (map! :map general-override-mode-map :nvie "M-m" #'doom/leader)
+
+(map!  :desc "Open vterm to the right"
+       :leader :nve "o C-t"
+       #'my/vterm-split-right)
