@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 
 Linux configuration files for
 - [Vim](https://github.com/vim/vim) (a quick, powerful and customizable terminal-based text editor)
