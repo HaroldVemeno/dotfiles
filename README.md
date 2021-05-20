@@ -12,3 +12,4 @@ Linux configuration files for
 - Picom (compositor, able to make windows transparent)
 - GDB (debugger)
 
+also some shell scripts
