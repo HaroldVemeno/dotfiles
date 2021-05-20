@@ -1,4 +1,9 @@
-###### ZSH CONFIG ######
+#  _________  _   _    ____ ___  _   _ _____ ___ ____
+# |__  / ___|| | | |  / ___/ _ \| \ | |  ___|_ _/ ___|
+#   / /\___ \| |_| | | |  | | | |  \| | |_   | | |  _
+#  / /_ ___) |  _  | | |__| |_| | |\  |  _|  | | |_| |
+# /____|____/|_| |_|  \____\___/|_| \_|_|   |___\____|
+#
 
 ### ZSH OPTIONS
 
@@ -189,6 +194,8 @@ weather()
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
 
+alias inxiall='inxi -aAbBCdDEfFGiIjJlLmMnNopPrRsSuwzZ'
+
 ### MISC
 
 # Some options and settings for stuff
@@ -203,7 +210,7 @@ export EMACSCLIENT='emacsclient -n -c -a ""'
 export EMACSTAB='emacsclient -n -a ""'
 export EMACSNW='emacsclient -nw -a ""'
 
-alias doom="$HOME/.emacs.doom/bin/doom"
+alias doom="$HOME/.config/emacs-doom/bin/doom"
 alias emc="$EMACSCLIENT"
 alias emt="$EMACSTAB"
 alias enw="$EMACSNW"
@@ -227,7 +234,9 @@ v () {
 }
 
 e () {
-    [ "$#" -eq 0 ] && emc || f -e "$EMACSCLIENT" $@
+    [ "$#" -eq 0 ] && emc && return || true
+    file="$(f $@)"
+    emc "$file"
 }
 
 unalias sd sf s zz
