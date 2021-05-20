@@ -1,4 +1,4 @@
-set nocompatible
+
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -12,12 +12,13 @@ Plug 'tpope/vim-surround'
 "Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'RRethy/vim-hexokinase'
-Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'preservim/nerdtree'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'ryanoasis/vim-devicons'
+"discord integration
 Plug 'vimsence/vimsence'
 "Plug 'ctrlpvim/ctrlp.vim'
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
@@ -57,7 +58,7 @@ let g:airline#extensions#tmuxline#enabled = 1
 set number	" Show line numbers
 set relativenumber
 set linebreak	" Break lines at word (requires Wrap lines)
-set showbreak=+++ 	" Wrap-broken line prefix
+set showbreak=+++	" Wrap-broken line prefix
 set showmatch	" Highlight matching brace
 set showcmd
 set noshowmode " Already in airline
@@ -69,7 +70,6 @@ set incsearch	" Searches for strings incrementally
 set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
 "set termguicolors
-"set cursorline cursorcolumn
 set splitbelow splitright
 
 set path+=**
@@ -97,19 +97,21 @@ set wildmode=longest,list,full
 set wildchar=<TAB>
 set listchars=space:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 
-set guifont=FiraCode\ Nerd\ Font
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
+"set guifont=FiraCode\ Nerd\ Font
+"set guioptions-=m  "remove menu bar
+"set guioptions-=T  "remove toolbar
+"set guioptions-=r  "remove right-hand scroll bar
+"set guioptions-=L  "remove left-hand scroll bar
 
 syntax enable
 
 map <Space> <Nop>
 let mapleader = "\<Space>"
 
+"map <silent> <leader>n :NERDTreeToggle<return>
 
-map <silent> <leader>n :NERDTreeToggle<return>
+command! W  execute 'write !sudo tee % > /dev/null' <bar> edit!
+command! Wq execute 'write !sudo tee % > /dev/null' <bar> q!
 
 map          <leader>wc <C-w>c
 map          <leader>wd <C-w>c
@@ -120,7 +122,7 @@ map          <leader>wj <C-w>j
 map          <leader>wk <C-w>k
 map          <leader>wl <C-w>l
 
-map <silent> <leader>fs :w<return>
+map <silent> <leader>fs :update<return>
 
 map <silent> <leader>b  :b<return>
 map <silent> <leader>]  :bnext<return>
@@ -129,9 +131,9 @@ map <silent> <leader>d  :bdelete<return>
 map          <leader>e  :edit<space>
 map <silent> <leader>s  :update<return>
 map <silent> <leader>S  :W<return>
-let g:ctrlp_map = "<leader>."
+"let g:ctrlp_map = "<leader>."
 
-inoremap jj <ESC>
+inoremap jk <ESC>
 nnoremap <ESC>^[ <ESC>^[
 nnoremap <silent> <ESC>  <ESC>:noh<return>
 
@@ -139,9 +141,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-command! W  execute 'write !sudo tee % > /dev/null' <bar> edit!
-command! Wq execute 'write !sudo tee % > /dev/null' <bar> q!
 
 command! Trim %s/\s\+$//ge
 
@@ -152,3 +151,12 @@ augroup vimrc
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
 augroup end
+
+hi CursorLine   cterm=NONE term=NONE ctermbg=238
+hi CursorLineNr cterm=NONE term=reverse ctermbg=240
+"ctermbg=238
+"guibg=darkred guifg=white
+hi CursorColumn cterm=NONE term=NONE ctermbg=237
+"guibg=darkred guifg=white
+set cursorline
+set cursorcolumn
