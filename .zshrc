@@ -179,8 +179,12 @@ alias unicode-test='curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo
 alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | bat'
 
 # Dotfile git aliases
-alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
-alias dots="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
+alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
+
+git() {
+    [ "$(pwd)" = "$HOME" ] && dots $@ || /usr/bin/git $@
+}
 
 # A terminal pastebin
 alias termbin='nc termbin.com 9999'
