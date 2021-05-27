@@ -6,12 +6,16 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 call plug#begin()
 
 Plug 'tpope/vim-surround'
 "Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
-Plug 'RRethy/vim-hexokinase'
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase'}
 "Plug 'preservim/nerdtree'
 "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plug 'ryanoasis/vim-devicons'
@@ -19,12 +23,14 @@ Plug 'RRethy/vim-hexokinase'
 Plug 'vimsence/vimsence'
 "Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'edkolev/tmuxline.vim'
+Plug 'romgrk/doom-one.vim'
 
 call plug#end()
 
+colorscheme doom-one
+
 filetype plugin on
 filetype indent on
-colorscheme desert
 
 let g:airline_powerline_fonts = 1
 
@@ -54,7 +60,7 @@ let g:Hexokinase_highlighters = ['backgroundfull']
 
 let g:airline#extensions#tmuxline#enabled = 1
 
-"" General
+"" Visual things
 set number	" Show line numbers
 set relativenumber
 set linebreak	" Break lines at word (requires Wrap lines)
@@ -62,18 +68,21 @@ set showbreak=+++	" Wrap-broken line prefix
 set showmatch	" Highlight matching brace
 set showcmd
 set noshowmode " Already in airline
-set timeoutlen=800 " Time to complete keybindings
-set ttimeoutlen=10 " Time to wait for terminal escape sequences
-set visualbell	" Use visual bell (no beeping)
+set listchars=space:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
+set ruler	" Show row and column ruler information
+set splitbelow splitright
+set undolevels=1000	" Number of undo levels
+set cursorline
+set cursorcolumn
+
+"" Search
+set magic
 set hlsearch	" Highlight all search results
 set incsearch	" Searches for strings incrementally
 set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
-"set termguicolors
-set splitbelow splitright
 
-set path+=**
-
+""Indentation
 set autoindent	" Auto-indent new lines
 set expandtab	" Use spaces instead of tabs
 set shiftwidth=4	" Number of auto-indent spaces
@@ -81,21 +90,22 @@ set smartindent	" Enable smart-indent
 set smarttab	" Enable smart-tabs
 set tabstop=4
 set softtabstop=4	" Number of spaces per Tab
-
-set ruler	" Show row and column ruler information
-
-set undolevels=1000	" Number of undo levels
 set backspace=indent,eol,start
-set hidden
 
+""Terminal things
+set ttyfast
+set timeoutlen=800 " Time to complete keybindings
+set ttimeoutlen=10 " Time to wait for terminal escape sequences
+set visualbell	" Use visual bell (no beeping)
 set mouse=a
-
-set magic
+set hidden
 set title
+
+""Completion (in command mode)
+set path+=**
 set wildmenu
 set wildmode=longest,list,full
 set wildchar=<TAB>
-set listchars=space:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 "set guifont=FiraCode\ Nerd\ Font
 "set guioptions-=m  "remove menu bar
@@ -104,6 +114,8 @@ set listchars=space:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 "set guioptions-=L  "remove left-hand scroll bar
 
 syntax enable
+
+nnoremap Y y$
 
 map <Space> <Nop>
 let mapleader = "\<Space>"
@@ -152,11 +164,11 @@ augroup vimrc
     autocmd InsertLeave * set relativenumber
 augroup end
 
-hi CursorLine   cterm=NONE term=NONE ctermbg=238
-hi CursorLineNr cterm=NONE term=reverse ctermbg=240
-"ctermbg=238
-"guibg=darkred guifg=white
-hi CursorColumn cterm=NONE term=NONE ctermbg=237
-"guibg=darkred guifg=white
-set cursorline
-set cursorcolumn
+
+"hi CursorLine   cterm=NONE term=NONE ctermbg=238 guibg=black
+"hi LineNr guifg=yellow
+"hi CursorLineNr cterm=NONE term=reverse ctermbg=240 guibg=black guifg=red
+"hi CursorColumn cterm=NONE term=NONE ctermbg=237 guibg=black
+hi Normal ctermbg=NONE guibg=NONE
+hi NonText ctermbg=NONE guibg=NONE
+hi LineNr ctermbg=NONE guibg=NONE
