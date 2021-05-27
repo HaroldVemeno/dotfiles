@@ -171,4 +171,6 @@ augroup end
 "hi CursorColumn cterm=NONE term=NONE ctermbg=237 guibg=black
 hi Normal ctermbg=NONE guibg=NONE
 hi NonText ctermbg=NONE guibg=NONE
-hi LineNr ctermbg=NONE guibg=NONE
+hi Folded ctermbg=NONE guibg=NONE
+hi LineNr ctermbg=NONE guibg=NONE guifg=#306bb9
+hi EndOfBuffer ctermbg=NONE guibg=NONE
