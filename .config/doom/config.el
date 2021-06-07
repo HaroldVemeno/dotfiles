@@ -90,6 +90,9 @@
 
 (add-hook! 'dired-mode-hook 'centaur-tabs-local-mode)
 (add-hook! 'ranger-mode-hook 'centaur-tabs-local-mode)
+(add-hook! 'coq-goals-mode-hook 'centaur-tabs-local-mode)
+(add-hook! 'coq-response-mode-hook 'centaur-tabs-local-mode)
+(add-hook! 'coq-shell-mode-hook 'centaur-tabs-local-mode)
 
 (defun my/display-set-relative ()
   (if (eq display-line-numbers t)
@@ -103,21 +106,8 @@
 (add-hook! 'evil-insert-state-entry-hook #'my/display-set-absolute)
 (add-hook! 'evil-insert-state-exit-hook #'my/display-set-relative )
 
-(map!  :desc "Kill buffer"
-       :leader :nve "d"
-       #'kill-current-buffer)
-(map!  :desc "Other window"
-       :leader :nve "w w"
-       #'other-window)
-(map!  :desc "Kill other windows"
-       :leader :nve "w a"
-       #'delete-other-windows)
-(map!  :desc "Open dired (deer)"
-       :leader :nve "f m"
-       #'dired-jump)
-(map!  :desc "Open ranger"
-       :leader :nve "f M"
-       #'ranger)
+;; (defun my/toggle-terminal-transparent-bg ()
+;;   (custom-set-faces! '(default :background nil)))
 
 (defun my/vterm-split-right ()
   "Create a new vterm window to the right of the current one."
@@ -128,9 +118,36 @@
     (other-window 1)
     (+vterm/here default-directory)))
 
-(map!  :desc "Open vterm to the right"
-       :leader :nve "o C-t"
-       #'my/vterm-split-right)
-
 (which-key-setup-minibuffer)
 (setq which-key-idle-delay 0.4)
+
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024)
+      treemacs-space-between-root-nodes nil
+      company-idle-delay 0.0
+      company-minimum-prefix-length 1
+      lsp-idle-delay 0.5)
+
+(map!  :leader
+
+       :desc "Kill buffer"
+       :nve "d" #'kill-current-buffer
+
+       :desc "Other window"
+       :nve "w w" #'other-window
+
+       :desc "Kill other windows"
+       :nve "w a" #'delete-other-windows
+
+       :desc "Open dired (deer)"
+       :nve "f m" #'dired-jump
+
+       ;; :desc "Transparent background"
+       ;; :nve "t B" #'my/toggle-terminal-transparent-bg
+
+       :desc "open ranger"
+       :nve "f M" #'ranger
+
+       :desc "Open vterm to the right"
+       :nve "o C-t" #'my/vterm-split-right)
+
