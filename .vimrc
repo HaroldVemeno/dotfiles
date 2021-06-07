@@ -115,15 +115,20 @@ set wildchar=<TAB>
 
 syntax enable
 
+nnoremap <ESC>^[ <ESC>^[
+inoremap          jk    <ESC>
+nnoremap <silent> <ESC> <ESC>:noh<return>
+
 nnoremap Y y$
 
-map <Space> <Nop>
-let mapleader = "\<Space>"
-
 "map <silent> <leader>n :NERDTreeToggle<return>
+"let g:ctrlp_map = "<leader>."
 
 command! W  execute 'write !sudo tee % > /dev/null' <bar> edit!
 command! Wq execute 'write !sudo tee % > /dev/null' <bar> q!
+
+map <Space> <Nop>
+let mapleader = "\<Space>"
 
 map          <leader>wc <C-w>c
 map          <leader>wd <C-w>c
@@ -143,16 +148,15 @@ map <silent> <leader>d  :bdelete<return>
 map          <leader>e  :edit<space>
 map <silent> <leader>s  :update<return>
 map <silent> <leader>S  :W<return>
-"let g:ctrlp_map = "<leader>."
+map <silent> <leader>y  "+y
+map <silent> <leader>Y  "+Y
+map <silent> <leader>p  "+p
+map <silent> <leader>P  "+P
 
-inoremap jk <ESC>
-nnoremap <ESC>^[ <ESC>^[
-nnoremap <silent> <ESC>  <ESC>:noh<return>
-
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 
 command! Trim %s/\s\+$//ge
 
@@ -163,7 +167,6 @@ augroup vimrc
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
 augroup end
-
 
 "hi CursorLine   cterm=NONE term=NONE ctermbg=238 guibg=black
 "hi LineNr guifg=yellow
