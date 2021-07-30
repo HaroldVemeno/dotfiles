@@ -4,6 +4,7 @@ export TERMINAL=/usr/bin/alacritty
 export BROWSER=firefox
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export WLC_USE_EGLDEVICE=1
 export XDG_CONFIG_DIRS=/etc/xdg
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
