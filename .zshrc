@@ -7,6 +7,9 @@
 
 ### ZSH OPTIONS
 
+# nvim pls
+alias vim=nvim
+
 # no weird keybinds inherited from old terminals
 stty -ixon
 
@@ -86,6 +89,7 @@ bindkey -v '^?' backward-delete-char
 
 
 # Theming section
+fpath+=~/.local/share/zsh/comp
 autoload -U compinit colors zcalc
 compinit -d
 colors
@@ -173,6 +177,11 @@ alias q='exit'
 alias lf='lfrun'
 alias gdbt='gdb -tui'
 alias nf='neofetch'
+
+mcd() {
+    mkdir -p $*
+    cd $*
+}
 
 # Terminal emulator tests
 alias unicode-test='curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt | bat'
