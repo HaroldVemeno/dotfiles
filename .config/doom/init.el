@@ -24,9 +24,10 @@
             +childframe)   ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +icons
-            +fuzzy
-            +prescient)    ; a search engine for love and life
+       ;;(ivy +icons
+       ;;     +fuzzy
+       ;;     +prescient)  ; a search engine for love and life
+       (vertico +icons)    ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -39,7 +40,7 @@
        ;;hydra
        indent-guides       ; highlighted indent columns
        ligatures           ; ligatures and symbols to make your code pretty again
-       minimap             ; show a map of the code on the side
+       ;;minimap           ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
@@ -61,7 +62,7 @@
        format              ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
-       multiple-cursors  ; editing in many places at once
+       ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
@@ -77,7 +78,7 @@
        vc                  ; version-control and Emacs, sitting in a tree
 
        :term
-       eshell              ; the elisp shell that works everywhere
+       ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        vterm               ; the best terminal emulation in Emacs
@@ -127,7 +128,8 @@
        ;;elm               ; care for a cup of TEA?
        emacs-lisp          ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
-       ;;es                ; emacs speaks statistics
+       ;;ess               ; emacs speaks statistics
+       ;;factor
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
@@ -143,7 +145,6 @@
        ;;kotlin            ; a better, slicker Java(Script)
        latex               ; writing papers in Emacs has never been so fun
        ;;lean
-       ;;factor
        ;;ledger            ; an accounting system in Emacs
        lua                 ; one-based indices? one-based indices
        markdown            ; writing docs for people to ignore
@@ -171,6 +172,7 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        (web +lsp)          ; the tubes
        (yaml +lsp)         ; JSON, but readable
+       ;;zig               ; C, but simpler
 
        :email
        ;;(mu4e +gmail)
@@ -180,7 +182,7 @@
        :app
        ;;calendar
        ;;emms
-       everywhere          ; *leave* Emacs!? You must be joking
+       ;;everywhere        ; *leave* Emacs!? You must be joking
        irc                 ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
