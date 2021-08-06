@@ -118,8 +118,7 @@
     (other-window 1)
     (+vterm/here default-directory)))
 
-(which-key-setup-minibuffer)
-(setq which-key-idle-delay 0.4)
+(setq which-key-idle-delay 0.1)
 
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
@@ -129,6 +128,9 @@
       lsp-idle-delay 0.5)
 
 (map!  :leader
+
+       :desc "Execute code action"
+       :nve "a" #'lsp-execute-code-action
 
        :desc "Kill buffer"
        :nve "d" #'kill-current-buffer
@@ -145,7 +147,7 @@
        ;; :desc "Transparent background"
        ;; :nve "t B" #'my/toggle-terminal-transparent-bg
 
-       :desc "open ranger"
+       :desc "Open ranger"
        :nve "f M" #'ranger
 
        :desc "Open vterm to the right"
