@@ -1,5 +1,5 @@
 #!/bin/sh
 
-DEFAULT=linux-zen
+DEFAULT=linux
 sudo kexec -l /boot/vmlinuz-"$DEFAULT" --initrd=/boot/initramfs-"$DEFAULT".img --reuse-cmdline
-sudo systemctl kexec
+exec sudo systemctl kexec
