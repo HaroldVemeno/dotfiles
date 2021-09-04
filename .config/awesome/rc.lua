@@ -10,7 +10,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-                      require("awful.hotkeys_popup.keys")
+--                      require("awful.hotkeys_popup.keys")
 -- Freedesktop menu
 local freedesktop = require("freedesktop")
 local lain = require("lain")
@@ -96,7 +96,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.tile.top,
     bling.layout.mstab,
     awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
+    awful.layout.suit.max.fullscreen,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
@@ -356,23 +356,23 @@ globalkeys = gears.table.join(
     {description="toggle titlebars", group="layout"}),
     awful.key({ modkey, "Control" }, "f",
         function ()
-            awful.layout.set(awful.layout.suit.max)
-            setStatusBarVisibility(false)
+            awful.layout.set(awful.layout.suit.max.fullscreen)
+            --setStatusBarVisibility(false)
         end,
     {description="fullscreen layout", group="layout"}),
     awful.key({ modkey, "Control" }, "m",
         function ()
             awful.layout.set(awful.layout.suit.max)
-            setStatusBarVisibility(true)
+            --setStatusBarVisibility(true)
         end,
     {description="maximized layout", group="layout"}),
     awful.key({ modkey, "Control" }, "t",
         function ()
             awful.layout.set(awful.layout.suit.tile)
-            setStatusBarVisibility(true)
+            --setStatusBarVisibility(true)
         end,
     {description="master stack layout", group="layout"}),
-    awful.key({ modkey, "Control" }, "b",
+    awful.key({ modkey            }, "b",
         function()
             toggleStatusBar()
         end,
@@ -425,11 +425,13 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, altkey    }, "Return", function () awful.spawn("alacritty -o background_opacity=0") end,
+              {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, altkey    }, "z", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Control" }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)                 end,
@@ -445,11 +447,11 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)           end,
               {description = "decrease the number of columns", group = "layout"}),
     awful.key({ modkey, altkey    }, "b", function () awful.spawn(browser)          end,
-              {description = "launch Browser", group = "launcher"}),
+              {description = "launch browser", group = "launcher"}),
 --    awful.key({ modkey, "Control"}, "Escape", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
 --              {description = "launch rofi", group = "launcher"}),
     awful.key({ modkey, altkey    }, "f", function () awful.spawn(filemanager)        end,
-              {description = "launch filemanager", group = "launcher"}),
+              {description = "launch file manager", group = "launcher"}),
     awful.key({ modkey, altkey    }, "e", function () awful.util.spawn_with_shell(gui_editor, false)        end,
               {description = "launch editor", group = "launcher"}),
     awful.key({ modkey, altkey    }, "d", function () awful.spawn('discord')            end,
@@ -463,7 +465,7 @@ globalkeys = gears.table.join(
     awful.key({"Shift"            }, "Print", function () awful.spawn.with_shell("sleep 0.1 && /usr/bin/i3-scrot -s")   end,
               {description = "capture a screenshot of selection", group = "screenshot"}),
 
-    awful.key({ modkey, "Control" }, "n",
+    awful.key({ modkey,           }, ",",
               function ()
                   local c = awful.client.restore()
                   -- Focus restored client

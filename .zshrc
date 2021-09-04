@@ -168,7 +168,7 @@ alias diff='diff --color=auto'
 alias sudo='sudo '
 alias exec='exec '
 # Genral aliases
-alias yeet='exec '
+alias yeet='pkill '
 alias woman='man'
 alias md='mkdir -pv'
 alias cls='clear'

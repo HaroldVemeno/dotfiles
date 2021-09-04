@@ -2,6 +2,7 @@
 
 ## run (only once) processes which spawn with the same name
 run() {
+   #(command -v $1 && ! pgrep $1 && ! systemctl --user is-enabled $1 && systemctl is-enabled $1) && $@&
    (command -v $1 && ! pgrep $1) && $@&
 }
 
@@ -28,7 +29,7 @@ run pcmanfm -d
 run pa-applet
 run pamac-tray
 run pasystray
-pgrep redshift || run redshift-gtk
+#pgrep redshift || run redshift-gtk
 run emacs --daemon
 
 ## The following are not included in minimal edition by default

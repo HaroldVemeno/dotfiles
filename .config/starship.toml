@@ -20,9 +20,6 @@ read_only = " 🔒"
 #[docker]
 #symbol = " "
 
-[dotnet]
-format = "via [$symbol($version )(*$tfm )]($style)"
-
 [elixir]
 symbol = " "
 

@@ -130,26 +130,49 @@
 (map!  :leader
 
        :desc "Execute code action"
-       :nve "a" #'lsp-execute-code-action
+       "a" #'lsp-execute-code-action
 
        :desc "Kill buffer"
-       :nve "d" #'kill-current-buffer
+       "d" #'kill-current-buffer
+
+       :desc "LSP Rename"
+       "r" #'lsp-rename
 
        :desc "Other window"
-       :nve "w w" #'other-window
+       "w w" #'other-window
 
        :desc "Kill other windows"
-       :nve "w a" #'delete-other-windows
+       "w a" #'delete-other-windows
 
        :desc "Open dired (deer)"
-       :nve "f m" #'dired-jump
+       "f m" #'dired-jump
 
        ;; :desc "Transparent background"
        ;; :nve "t B" #'my/toggle-terminal-transparent-bg
 
        :desc "Open ranger"
-       :nve "f M" #'ranger
+       "f M" #'ranger
 
        :desc "Open vterm to the right"
-       :nve "o C-t" #'my/vterm-split-right)
+       "o C-t" #'my/vterm-split-right)
 
+(map! :localleader
+      :map latex-mode-map
+
+      :desc "Compile file with default"
+      "c" #'tex-compile-default
+
+      :desc "Compile file with choice"
+      "C" #'tex-compile)
+
+(map! :localleader
+      :map LaTeX-mode-map
+
+      :desc "Compile file with default"
+      "c" #'tex-compile-default
+
+      :desc "Compile file with choice"
+      "C" #'tex-compile)
+
+(load-file (let ((coding-system-for-read 'utf-8))
+             (shell-command-to-string "agda-mode-2.6.3 locate")))

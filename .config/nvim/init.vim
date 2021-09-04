@@ -23,7 +23,7 @@ Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase'}
 Plug 'vimsence/vimsence'
 "Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'edkolev/tmuxline.vim'
-Plug 'romgrk/doom-one.vim'
+Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovimhaskell/haskell-vim'
 

@@ -24,6 +24,7 @@ Plug 'vimsence/vimsence'
 "Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'edkolev/tmuxline.vim'
 Plug 'romgrk/doom-one.vim'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
