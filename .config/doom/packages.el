@@ -51,3 +51,10 @@
 
 (package! elcord)
 (package! emmet-mode)
+
+(unpin! company-coq)
+(unpin! proof-general)
+(package! vterm :recipe
+  (:host github
+   :repo "blahgeek/emacs-libvterm"
+   :branch "fix-visibility"))

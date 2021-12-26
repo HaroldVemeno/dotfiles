@@ -174,5 +174,46 @@
       :desc "Compile file with choice"
       "C" #'tex-compile)
 
+(map! :after coq-mode
+      :map coq-mode-map
+      "M-j"  #'proof-assert-next-command-interactive
+      "M-k"  #'proof-undo-last-successful-command
+      "M-l"  #'proof-goto-point
+)
+
 (load-file (let ((coding-system-for-read 'utf-8))
              (shell-command-to-string "agda-mode-2.6.3 locate")))
+
+(plist-put! +ligatures-extra-symbols
+  '(;; org
+    :name          "»"
+    :src_block     "»"
+    :src_block_end "«"
+    :quote         "“"
+    :quote_end     "”"
+    ;; Functional
+    :lambda        "λ"
+    :def           "ƒ"
+    :composition   "∘"
+    :map           "↦"
+    ;; Types
+    :null          "∅"
+    :true          "⊤"
+    :false         "⊥"
+    ;; Flow
+    :not           "￢"
+    :in            "∈"
+    :not-in        "∉"
+    :and           "∧"
+    :or            "∨"
+    :for           "∀"
+    :some          "∃"
+    :return        "⟼"
+    :yield         "⟻"
+    ;; Other
+    :union         "⋃"
+    :intersect     "⋂"
+    :diff          "∖"
+    :tuple         "⨂"
+    ;; :pipe          "" ;; FIXME: find a non-private char
+    :dot           "•"))
