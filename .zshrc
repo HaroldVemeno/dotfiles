@@ -177,6 +177,7 @@ alias q='exit'
 alias lf='lfrun'
 alias gdbt='gdb -tui'
 alias nf='neofetch'
+alias make='make -j$(nproc)'
 
 mcd() {
     mkdir -p $*
@@ -291,3 +292,6 @@ se () {
 
 ## THE PROMPT
 eval "$(starship init zsh)"
+
+# Opam
+[[ ! -r /home/stepan/.opam/opam-init/init.zsh ]] || source /home/stepan/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

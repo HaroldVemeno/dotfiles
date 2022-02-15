@@ -1,0 +1,31 @@
+[user]
+	name = Štěpán Mikéska
+	email = haroldvemeno@email.cz
+[core]
+	editor = nvim
+[color]
+	ui = true
+[init]
+	defaultBranch = main
+[gui]
+	recentrepo = /home/stepan/Projects/lambda
+[alias]
+	st = status
+	br = branch
+	co = commit
+	a = add
+	pl = pull
+	ps = push
+	cl = clone
+	di = difftool
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
