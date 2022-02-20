@@ -1,9 +1,12 @@
 #format = "[ ](#34be5b) $all"
 format = "[ ](#1793d1) $all"
 
+[[battery.display]]
+threshold = 15
+style = "bold red"
+
 [character]
 vicmd_symbol = "[❮](#00fff7)"
-
 
 [aws]
 symbol = " "
