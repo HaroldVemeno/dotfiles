@@ -113,7 +113,11 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Use history substring search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # Fzf keybinds
+<<<<<<< HEAD
 source ~/.local/share/zsh/plugins/key-bindings.zsh
+=======
+# source ~/.local/share/zsh/plugins/key-bindings.zsh
+>>>>>>> e5fb1c3 (Initial laptop commit)
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -177,7 +181,10 @@ alias q='exit'
 alias lf='lfrun'
 alias gdbt='gdb -tui'
 alias nf='neofetch'
+<<<<<<< HEAD
 alias make='make -j$(nproc)'
+=======
+>>>>>>> e5fb1c3 (Initial laptop commit)
 
 mcd() {
     mkdir -p $*
@@ -192,9 +199,15 @@ alias emoji-test='curl https://unicode.org/Public/emoji/13.0/emoji-test.txt | ba
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 
+<<<<<<< HEAD
 git() {
     [ "$(pwd)" = "$HOME" ] && dots $@ || /usr/bin/git $@
 }
+=======
+# git() {
+#     [ "$(pwd)" = "$HOME" ] && dots $@ || /usr/bin/git $@
+# }
+>>>>>>> e5fb1c3 (Initial laptop commit)
 
 # A terminal pastebin
 alias termbin='nc termbin.com 9999'
@@ -224,7 +237,11 @@ export EMACSCLIENT='emacsclient -n -c -a ""'
 export EMACSTAB='emacsclient -n -a ""'
 export EMACSNW='emacsclient -nw -a ""'
 
+<<<<<<< HEAD
 alias doom="$HOME/.config/emacs-doom/bin/doom"
+=======
+alias doom="$HOME/.emacs.d/bin/doom"
+>>>>>>> e5fb1c3 (Initial laptop commit)
 alias emc="$EMACSCLIENT"
 alias emt="$EMACSTAB"
 alias enw="$EMACSNW"
@@ -295,3 +312,7 @@ eval "$(starship init zsh)"
 
 # Opam
 [[ ! -r /home/stepan/.opam/opam-init/init.zsh ]] || source /home/stepan/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+alias awe="sx awesome"
+alias qti="qtile start -b wayland"
+alias xqti="sx qtile start -b x11"
