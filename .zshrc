@@ -13,6 +13,8 @@ alias vim=nvim
 # no weird keybinds inherited from old terminals
 stty -ixon
 
+set -m
+
 # Zsh profiling
 zmodload zsh/zprof
 
@@ -37,10 +39,17 @@ setopt histignorealldups
 # if only directory path is entered, cd there.
 setopt autocd
 
+setopt incappendhistory
+
 # No wierd esc shenanigans
 export KEYTIMEOUT=1
 
 # Case insensitive tab completion
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' max-errors 2 numeric
+zstyle ':completion:*' menu select=5
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -50,6 +59,8 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh/cache
+
+
 HISTFILE=~/.local/share/zsh/history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -198,15 +209,43 @@ alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
 # A terminal pastebin
 alias termbin='nc termbin.com 9999'
 
-# Weather
-weather()
+wttr()
 {
     # change Paris to your default location
     local request="wttr.in/$@"
     [ "$(tput cols)" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
+alias weather=wttr
 
+wttr2()
+{
+    # change Paris to your default location
+    local request="v2.wttr.in/$@"
+    [ "$(tput cols)" -lt 125 ] && request+='?n'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
+wttr2d()
+{
+    # change Paris to your default location
+    local request="v2d.wttr.in/$@"
+    [ "$(tput cols)" -lt 125 ] && request+='?n'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
+wttr2n()
+{
+    # change Paris to your default location
+    local request="v2n.wttr.in/$@"
+    [ "$(tput cols)" -lt 125 ] && request+='?n'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
+wttr3()
+{
+    # change Paris to your default location
+    local request="v3.wttr.in/$@.sxl"
+    [ "$(tput cols)" -lt 125 ] && request+='?n'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
 alias inxiall='inxi -aAbBCdDEfFGiIjJlLmMnNopPrRsSuwzZ'
 
 ### MISC
@@ -223,7 +262,7 @@ export EMACSCLIENT='emacsclient -n -c -a ""'
 export EMACSTAB='emacsclient -n -a ""'
 export EMACSNW='emacsclient -nw -a ""'
 
-alias doom="$HOME/.config/emacs-doom/bin/doom"
+alias doom="$HOME/.emacs.d/bin/doom"
 alias emc="$EMACSCLIENT"
 alias emt="$EMACSTAB"
 alias enw="$EMACSNW"
@@ -298,3 +337,17 @@ eval "$(starship init zsh)"
 alias awe="sx awesome"
 alias qti="qtile start -b wayland"
 alias xqti="sx qtile start -b x11"
+
+scr () {
+    slurp | grim -g -
+}
+
+
+TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
+'avg shared (code):         %X KB'$'\n'\
+'avg unshared (data/stack): %D KB'$'\n'\
+'total (sum):               %K KB'$'\n'\
+'max memory:                %M MB'$'\n'\
+'page faults from disk:     %F'$'\n'\
+'other page faults:         %R'
+

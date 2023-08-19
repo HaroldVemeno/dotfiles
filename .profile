@@ -1,6 +1,6 @@
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
-export TERMINAL=/usr/bin/alacritty
+export TERMINAL=/usr/bin/foot
 export BROWSER=firefox
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -13,6 +13,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 export MOZ_ENABLE_WAYLAND=1
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.cargo/bin:$HOME/scripts:$HOME/.composer/vendor/bin"
+export XKB_DEFAULT_LAYOUT="cz"
+export XKB_DEFAULT_VARIANT="coder"
 
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.cargo/bin:$HOME/scripts:$HOME/.composer/vendor/bin:$HOME/go/bin"
+export PATH="$PATH:$HOME/projects/cp/ksp/ksp-klient"
 eval $(opam env)

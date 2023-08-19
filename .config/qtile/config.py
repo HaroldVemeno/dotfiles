@@ -10,16 +10,17 @@ from libqtile import layout, bar, widget, hook
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.backend.wayland import InputConfig
+
 from typing import List  # noqa: F401from typing import List  # noqa: F401
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 alt = "mod1"
 wayland = qtile.core.name == "wayland"
-print(wayland)
 if wayland:
     myTerm = "foot"
 else:
     myTerm = "alacritty"
+
 myBrowser = "firefox" # Browser
 
 wl_input_rules = {
@@ -32,7 +33,13 @@ wl_input_rules = {
             ),
         "type:pointer":
             InputConfig(
-                middle_emulation=True
+                middle_emulation=True,
+                dwt=False,
+            ),
+        "type:touchpad":
+            InputConfig(
+                middle_emulation=True,
+                dwt=False,
             ),
         "*": InputConfig()
 }
@@ -55,6 +62,10 @@ keys = [
              lazy.spawn("discord"),
              desc='Discord'
              ),
+         Key([mod, alt], "t",
+             lazy.spawn("alacritty"),
+             desc='Discord'
+             ),
          Key([mod], "Tab",
              lazy.next_layout(),
              desc='Toggle through layouts'
@@ -72,7 +83,7 @@ keys = [
              desc='Shutdown Qtile'
              ),
          Key([mod, alt], "e",
-             lazy.spawn("emacsclient -c -a emacs"),
+             lazy.spawn("emacsclient -n -c -a ''"),
              desc='Doom Emacs'
              ),
          ### Switch focus to specific monitor (out of three)
@@ -240,28 +251,38 @@ keys = [
         #          )
         #  ])
          Key([], "XF86MonBrightnessUp",
-             lazy.spawn("brightnessctl s 10+"),
+             lazy.spawn("brightnessctl s 5%+"),
              desc='Brightness up'
              ),
          Key([], "XF86MonBrightnessDown",
-             lazy.spawn("brightnessctl s 10-"),
+             lazy.spawn("brightnessctl s 5%-"),
              desc='Brightness down'
              ),
          Key([], "XF86AudioRaiseVolume",
-             lazy.spawn("amixer set Master 5%+"),
+             lazy.spawn("amixer -c 1 set Master 5%+"),
              desc='Volume up'
              ),
          Key([], "XF86AudioLowerVolume",
-             lazy.spawn("amixer set Master 5%-"),
+             lazy.spawn("amixer -c 1 set Master 5%-"),
              desc='Volume down'
              ),
          Key([], "XF86AudioMute",
-             lazy.spawn("amixer set Master toggle"),
+             lazy.spawn("amixer -c 1 set Master toggle"),
              desc='Volume mute'
              ),
+         Key([mod], "Escape",
+             lazy.spawn("lock"),
+             desc='Lock the screen'
+             )
 
 ]
 
+for i in range(1, 7):
+    keys.append(Key(["control", alt], 'F' + str(i),
+        lazy.change_vt(i),
+        desc=f'Change to vt {i}'))
+
+>>>>>>> a2079d1 (catching up)
 groups = [Group(i) for i in "123456789"]
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
@@ -383,7 +404,7 @@ def init_widgets_list():
                        fontsize = 14
                        ),
               widget.CurrentLayoutIcon(
-                       custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+                       #custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
                        foreground = colors[2],
                        background = colors[0],
                        padding = 0,
@@ -394,7 +415,7 @@ def init_widgets_list():
                        background = colors[0],
                        padding = 5
                        ),
-             widget.TextBox(
+              widget.TextBox(
                        text = '|',
                        font = "Ubuntu Mono",
                        background = colors[0],
@@ -435,9 +456,11 @@ def init_widgets_list():
               widget.Backlight(
                        foreground = colors[1],
                        background = colors[3],
-                       backlight_name = 'amdgpu_bl0',
+                       backlight_name = 'amdgpu_bl1',
                        fmt = 'Brigh: {}',
-                       padding = 5
+                       change_command = ' brightnessctl set {0}%',
+                       padding = 5,
+                       step = 2,
                        ),
               widget.TextBox(
                        text = '',
@@ -469,7 +492,7 @@ def init_widgets_list():
                        foreground = colors[1],
                        colour_have_updates = colors[1],
                        colour_no_updates = colors[1],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e topgrade')},
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e paru')},
                        padding = 5,
                        background = colors[5]
                        ),
@@ -496,11 +519,14 @@ def init_widgets_list():
                        padding = 0,
                        fontsize = 37
                        ),
-              widget.Volume(
+              widget.PulseVolume(
                        foreground = colors[1],
                        background = colors[7],
+                       #cardid = 1,
+                       limit_max_volume = True,
                        fmt = 'Vol: {}',
-                       padding = 5
+                       padding = 5,
+                       step = 1
                        ),
               widget.TextBox(
                        text = '',
@@ -545,21 +571,56 @@ def init_widgets_list():
                        background = colors[3],
                        format = "%A, %B %d - %H:%M "
                        ),
+              widget.TextBox(
+                       text = '',
+                       font = "Ubuntu Mono",
+                       background = colors[3],
+                       foreground = colors[4],
+                       padding = 0,
+                       fontsize = 37
+                       ),
+              widget.Notify(
+                       foreground = colors[1],
+                       background = colors[4],
+                       )
               ]
     return widgets_list
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
+    if wayland:
+        widgets_screen1[9] = widget.StatusNotifier(
+           background = colors[0],
+           padding = 5
+        )
+    else:
+        widgets_screen1[9] = widget.Systray(
+           background = colors[0],
+           padding = 5
+        )
     return widgets_screen1
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
     return widgets_screen2                 # Monitor 2 will display all widgets in widgets_list
 
+
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=20)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20))]
+    return [ Screen(top=bar.Bar(widgets=init_widgets_screen1(),
+                                opacity=1.0,
+                                size=20),
+                    wallpaper='/usr/share/backgrounds/archlinux/archwave.png',
+                    wallpaper_mode='stretch'),
+             Screen(top=bar.Bar(widgets=init_widgets_screen1(),
+                                opacity=1.0,
+                                size=20),
+                    wallpaper='/usr/share/backgrounds/archlinux/archwave.png',
+                    wallpaper_mode='stretch'),
+             Screen(top=bar.Bar(widgets=init_widgets_screen1(),
+                                opacity=1.0,
+                                size=20),
+                    wallpaper='/usr/share/backgrounds/archlinux/archwave.png',
+                    wallpaper_mode='stretch')]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()
@@ -627,8 +688,10 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def start_once():
+    print("please do what you should")
     home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/autorun.sh'])
+    print(home)
+    #subprocess.call([home + '/.config/autorun.sh'])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

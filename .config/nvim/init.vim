@@ -13,23 +13,29 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 call plug#begin()
 
 Plug 'tpope/vim-surround'
-"Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase'}
+Plug 'vimsence/vimsence'
+Plug 'navarasu/onedark.nvim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
+Plug 'qpkorr/vim-renamer'
 "Plug 'preservim/nerdtree'
 "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plug 'ryanoasis/vim-devicons'
-"discord integration
-Plug 'vimsence/vimsence'
+"Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdate'}
 "Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'edkolev/tmuxline.vim'
-Plug 'NTBBloodbath/doom-one.nvim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neovimhaskell/haskell-vim'
+"Plug 'mattn/emmet-vim'
 
 call plug#end()
 
-colorscheme doom-one
+let g:onedark_config = { 'style': 'cool' }
+
+colorscheme onedark
 
 filetype plugin on
 filetype indent on
@@ -37,6 +43,7 @@ filetype indent on
 let g:airline_powerline_fonts = 1
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 " remove 'X' at the end of the tabline
@@ -138,6 +145,9 @@ nnoremap Y y$
 command! W  execute 'write !sudo tee % > /dev/null' <bar> edit!
 command! Wq execute 'write !sudo tee % > /dev/null' <bar> q!
 
+command! Yq %y+ <bar> q!
+cnoreabbrev yq Yq
+
 map <Space> <Nop>
 let mapleader = "\<Space>"
 
@@ -183,8 +193,64 @@ augroup end
 "hi LineNr guifg=yellow
 "hi CursorLineNr cterm=NONE term=reverse ctermbg=240 guibg=black guifg=red
 "hi CursorColumn cterm=NONE term=NONE ctermbg=237 guibg=black
+" trasparency fix
 hi Normal ctermbg=NONE guibg=NONE
 hi NonText ctermbg=NONE guibg=NONE
 hi Folded ctermbg=NONE guibg=NONE
 hi LineNr ctermbg=NONE guibg=NONE guifg=#306bb9
 hi EndOfBuffer ctermbg=NONE guibg=NONE
+
+
+
+" Viewer options: One may configure the viewer either by specifying a built-in
+" viewer method:
+let g:vimtex_view_method = 'zathura'
+
+" Or with a generic interface:
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+
+" VimTeX uses latexmk as the default compiler backend. If you use it, which is
+" strongly recommended, you probably don't need to configure anything. If you
+" want another compiler backend, you can change it as follows. The list of
+" supported backends and further explanation is provided in the documentation,
+" see ":help vimtex-compiler".
+let g:vimtex_compiler_method = 'latexmk'
+
+" Most VimTeX mappings rely on localleader and this can be changed with the
+" following line. The default is usually fine and is the symbol "\".
+let maplocalleader = "\<Space>"
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  auto_install = true,
+  highlight = {
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.hls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.org = {
+  install_info = {
+    url = 'https://github.com/milisims/tree-sitter-org',
+    revision = 'main',
+    files = { 'src/parser.c', 'src/scanner.cc' },
+  },
+  filetype = 'org',
+}
+
+EOF
