@@ -13,7 +13,7 @@ alias vim=nvim
 # no weird keybinds inherited from old terminals
 stty -ixon
 
-set -m
+# set -m
 
 # Zsh profiling
 zmodload zsh/zprof
@@ -337,6 +337,7 @@ eval "$(starship init zsh)"
 alias awe="sx awesome"
 alias qti="qtile start -b wayland"
 alias xqti="sx qtile start -b x11"
+alias H="Hyprland"
 
 scr () {
     slurp | grim -g -
