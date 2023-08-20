@@ -1,0 +1,51 @@
+Advanced Network Configuration
+Alacritty
+Avahi SSH Server Browser
+Avahi VNC Server Browser
+Avahi Zeroconf Browser
+Bluetooth
+Byobu Gnome Terminal
+Byobu Terminal
+CMake
+Cities: Skylines
+Color Profile Viewer
+Counter-Strike: Global Offensive
+Desktop Preferences
+Discord
+Easy Effects
+Extensions
+File Manager PCManFM
+Files
+Firefox Web Browser
+FontForge
+Foot
+Foot Client
+Foot Server
+Hardware Locality lstopo
+Htop
+IBus Preferences
+Icon Browser
+Klipper
+Neovim
+Post Void
+Potion Craft: Alchemist Simulator
+Preferred Applications
+Proton Experimental
+PulseAudio Volume Control
+Qt Assistant
+Qt Designer
+Qt Linguist
+Qt QDBusViewer 
+Qt V4L2 test Utility
+Qt V4L2 video capture utility
+Settings
+Steam (Native)
+Steam (Runtime)
+Steam Linux Runtime - Sniper
+Team Fortress 2
+UserFeedback Console
+Vim
+Wifi Hotspot
+YAD settings
+btop++
+nvtop
