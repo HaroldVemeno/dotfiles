@@ -1,0 +1,82 @@
+snippet MTemplate "generic cp template for CF" b
+#include <bits/stdc++.h>
+
+#ifdef GUDEB
+	#define D(x) cerr << #x << ": " << (x) << '\n';
+	#define ifdeb if(true)
+#else
+	#define D(x) ;
+	#define ifdeb if(false)
+#endif
+
+#define all(x) begin(x), end(x)
+
+using namespace std;
+using ull = unsigned long long;
+using ll = long long;
+// #define int ll;
+
+void solve() {
+	$0
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout << setprecision(20);
+
+	int tests = 1;
+	cin >> tests;
+	while(tests-- > 0) {
+		solve();
+	} }
+
+endsnippet
+
+snippet Template "generic cp template" b
+#include <bits/stdc++.h>
+
+#ifdef GUDEB
+	#define D(x) cerr << #x << ": " << (x) << '\n';
+	#define ifdeb if(true)
+#else
+	#define D(x) ;
+	#define ifdeb if(false)
+#endif
+
+#define all(x) begin(x), end(x)
+
+using namespace std;
+using ull = unsigned long long;
+using ll = long long;
+// #define int ll;
+
+void solve() {
+	$0
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout << setprecision(20);
+
+	solve();
+}
+
+endsnippet
+
+snippet fastio "" b
+ios_base::sync_with_stdio(false);
+cin.tie(nullptr);
+endsnippet
+
+snippet op<
+friend bool operator < (const $1& a, const $1& b) {
+	return $0;
+}
+endsnippet
+
+snippet lambda
+[]($1 a, $1 b){ return $0; }
+endsnippet
+

@@ -1,0 +1,19 @@
+snippet linsieve "linear sieve (primes and factorizations of all numbers < n)" b
+vector<int> primes;
+vector<int> factor;
+void linsieve(int n) {
+	factor.resize(n+1, 1);
+	for(int i = 2; i < n; ++i) {
+		if(factor[i] == 1) {
+			primes.push_back(i);
+			factor[i] = i;
+		}
+
+		for(int p : primes) {
+			if(p * i <= n && p <= factor[i]) {
+				factor[p*i] = p;
+			} else break;
+		}
+	}
+}
+endsnippet

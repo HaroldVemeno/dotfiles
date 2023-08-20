@@ -1,0 +1,14 @@
+snippet binpow "" b
+template<typename T>
+T pow(T b, ll e) {
+	T r = 1;
+	while(e > 0) {
+		if(e & 1) {
+			r *= b;
+		}
+		e /= 2;
+		b *= b;
+	}
+	return r;
+}
+endsnippet

@@ -1,0 +1,44 @@
+snippet dsu "rank-based dsu" b
+struct DSU {
+	vector<int> id;
+	vector<int> rank;
+
+	DSU(int n) {
+		reserve(n);
+	}
+
+	void reserve(int n) {
+		while(id.size() < n) {
+			id.push_back(id.size());
+			rank.push_back(0);
+		}
+	}
+
+	int add() {
+		id.push_back(id.size());
+		rank.push_back(0);
+		return id.size()-1;
+	}
+
+	int root(int x) {
+		if(id[x] == x) {
+			return x;
+		} else {
+			int r = root(id[x]);
+			id[x] = r;
+			return r;
+		}
+	}
+	void join(int x, int y) {
+		x = root(x);
+		y = root(y);
+
+		if(rank[x] < rank[y]) {
+			swap(x, y);
+		}
+
+		id[y] = x;
+		if(rank[x] == rank[y]) rank[x]++;
+	}
+};
+endsnippet
