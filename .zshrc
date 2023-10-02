@@ -187,6 +187,8 @@ alias q='exit'
 alias lf='lfrun'
 alias gdbt='gdb -tui'
 alias nf='neofetch'
+alias gf='guifetch'
+alias ňuf='neofetch'
 alias make='make -j$(nproc)'
 
 mcd() {
@@ -253,6 +255,7 @@ alias inxiall='inxi -aAbBCdDEfFGiIjJlLmMnNopPrRsSuwzZ'
 # Some options and settings for stuff
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export PAGER="bat"
+export MANROFFOPT="-P -c"
 export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
 export NNN_TRASH=1
 source ~/.config/lf/lficons
@@ -351,4 +354,13 @@ TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
 'max memory:                %M MB'$'\n'\
 'page faults from disk:     %F'$'\n'\
 'other page faults:         %R'
+
+watts()
+{
+    echo - | awk "{printf \"%.1f\", \
+    $(( \
+      $(cat /sys/class/power_supply/BAT0/current_now) * \
+      $(cat /sys/class/power_supply/BAT0/voltage_now) \
+    )) / 1000000000000 }" ; echo " W "
+}
 
