@@ -1,0 +1,6 @@
+#!/bin/sh
+
+qtile cmd-obj -o core -f set_keymap -a cz "" coder
+xset r rate 250 33
+setxkbmap cz coder
+

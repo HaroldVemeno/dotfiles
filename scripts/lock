@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+[ -n "$WAYLAND_DISPLAY" ] && exec swaylock -e -c 000000
+[ -n "$DISPLAY" ] && exec slock
+exec physlock -p $'\n\n'"$(neofetch) "$'\n'"$(figlet -w 200 'TODO:  najit  lepsi  zamek  lol' | lolcat -f)"

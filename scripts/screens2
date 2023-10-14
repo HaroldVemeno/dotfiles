@@ -1,0 +1,4 @@
+#!/bin/sh
+
+wlr-randr --output DP-2 --mode 2560x1440@143.992Hz --pos 0,0
+wlr-randr --output eDP-1 --pos 2560,0
