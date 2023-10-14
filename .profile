@@ -1,5 +1,6 @@
 
-[ "$PROFILE_LOADED" -eq 1 ] || {
+[ "$PROFILE_LOADED" = 1 ] || {
+
     export PROFILE_LOADED=1
 
     export EDITOR=/usr/bin/nvim
@@ -22,5 +23,6 @@
 
     export PATH="$PATH:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.cargo/bin:$HOME/scripts:$HOME/.composer/vendor/bin:$HOME/go/bin"
     export PATH="$PATH:$HOME/projects/cp/ksp/ksp-klient"
-    eval $(opam env)
+    eval "$(opam env)"
+
 }
