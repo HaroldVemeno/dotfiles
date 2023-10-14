@@ -1,5 +1,6 @@
 #format = "[ ](#34be5b) $all"
-format = "[ ](#1793d1) $all"
+#format = "[ ](#1793d1) $all"
+format = "$os $all"
 
 [[battery.display]]
 threshold = 15
@@ -35,8 +36,8 @@ symbol = " "
 [golang]
 symbol = " "
 
-#[haskell]
-#symbol = " "
+[haskell]
+symbol = " "
 
 [hg_branch]
 symbol = " "
@@ -79,3 +80,48 @@ symbol = " "
 
 [swift]
 symbol = " ﯣ"
+
+[os]
+disabled = false
+style = "#1793d1"
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "

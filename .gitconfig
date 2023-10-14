@@ -1,8 +1,8 @@
 [user]
-	name = Harold Vemeno
-	email = haroldvemeno@email.cz
+	name = Štěpán Mikéska
+	email = stepanmikeska@email.cz
 [core]
-	editor = nvim
+	editor = vim
 [color]
 	ui = true
 [init]

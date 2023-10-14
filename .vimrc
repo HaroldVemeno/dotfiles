@@ -108,6 +108,16 @@ set wildmenu
 set wildmode=longest,list,full
 set wildchar=<TAB>
 
+command! Trim %s/\s\+$//ge
+
+augroup vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC | AirlineRefresh
+    autocmd BufWritePre * Trim
+    autocmd InsertEnter * set norelativenumber
+    autocmd InsertLeave * set relativenumber
+augroup end
+
 "set guifont=FiraCode\ Nerd\ Font
 "set guioptions-=m  "remove menu bar
 "set guioptions-=T  "remove toolbar
@@ -159,15 +169,6 @@ map <silent> <leader>P  "+P
 "nnoremap <C-k> <C-w>k
 "nnoremap <C-l> <C-w>l
 
-command! Trim %s/\s\+$//ge
-
-augroup vimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC | AirlineRefresh
-    autocmd BufWritePre * Trim
-    autocmd InsertEnter * set norelativenumber
-    autocmd InsertLeave * set relativenumber
-augroup end
 
 "hi CursorLine   cterm=NONE term=NONE ctermbg=238 guibg=black
 "hi LineNr guifg=yellow
