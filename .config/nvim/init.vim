@@ -23,6 +23,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'qpkorr/vim-renamer'
+Plug 'whonore/Coqtail'
 "Plug 'preservim/nerdtree'
 "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plug 'ryanoasis/vim-devicons'
@@ -160,6 +161,13 @@ map          <leader>wj <C-w>j
 map          <leader>wk <C-w>k
 map          <leader>wl <C-w>l
 
+map <silent> <A-j> <Plug>CoqNext
+map <silent> <A-k> <Plug>CoqUndo
+map <silent> <A-l> <Plug>CoqToLine
+imap <silent> <A-j> <Plug>CoqNext
+imap <silent> <A-k> <Plug>CoqUndo
+imap <silent> <A-l> <Plug>CoqToLine
+
 map <silent> <leader>fs :update<return>
 
 map <silent> <leader>b  :b<return>
@@ -187,6 +195,10 @@ augroup vimrc
     autocmd BufWritePre * Trim
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
+
+    autocmd FileType python map <buffer> <leader>mx :!python %<return>
+    autocmd FileType python map <buffer> <leader>mm :!python -m mypy %<return>
+    autocmd FileType python map <buffer> <leader>me :!python -m edulint %<return>
 augroup end
 
 "hi CursorLine   cterm=NONE term=NONE ctermbg=238 guibg=black
